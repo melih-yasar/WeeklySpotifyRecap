@@ -26,6 +26,9 @@ LASTFM_API_KEY=
 LASTFM_USERNAME=
 SPOTIFY_CLIENT_ID=
 SPOTIFY_CLIENT_SECRET=
+GMAIL_ADDRESS=
+GMAIL_APP_PASSWORD=
+RECIPIENT_EMAIL=
 PLAYLIST_URL=
 ```
 
@@ -38,10 +41,13 @@ $env:LASTFM_API_KEY="your-lastfm-api-key"
 $env:LASTFM_USERNAME="your-lastfm-username"
 $env:SPOTIFY_CLIENT_ID="your-spotify-client-id"
 $env:SPOTIFY_CLIENT_SECRET="your-spotify-client-secret"
+$env:GMAIL_ADDRESS="your-gmail-address"
+$env:GMAIL_APP_PASSWORD="your-gmail-app-password"
+$env:RECIPIENT_EMAIL="recipient-email-address"
 $env:PLAYLIST_URL="your-playlist-url"
 ```
 
-## 5. Run the recap
+## 5. Run and send the recap email
 
 ```powershell
 $env:PYTHONPATH="src"
