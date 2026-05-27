@@ -1,5 +1,5 @@
-from helpers import find_album_for_track
-from spotify import (
+from .helpers import find_album_for_track
+from .spotify import (
     get_exact_spotify_album,
     get_exact_spotify_artist,
     get_exact_spotify_track,

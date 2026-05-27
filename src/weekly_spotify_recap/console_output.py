@@ -1,5 +1,5 @@
-from config import PLAYLIST_URL
-from helpers import estimate_listening_hours
+from .config import PLAYLIST_URL
+from .helpers import estimate_listening_hours
 
 
 def print_console_summary(summary, enriched):

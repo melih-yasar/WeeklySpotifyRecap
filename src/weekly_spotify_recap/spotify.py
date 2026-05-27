@@ -2,8 +2,8 @@ import base64
 
 import requests
 
-from config import SPOTIFY_API_BASE, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TOKEN_URL
-from helpers import exact_name_match, relaxed_album_match
+from .config import SPOTIFY_API_BASE, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TOKEN_URL
+from .helpers import exact_name_match, relaxed_album_match
 
 _spotify_app_token_cache = None
 

@@ -3,10 +3,10 @@ A Python-based email automation project that generates a weekly Spotify listenin
 
 ## Setup
 
-Install dependencies:
+Install the project and its dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
 
 Copy `.env.example` to `.env` and fill in your Last.fm and Spotify credentials. Then export those values into your shell before running the recap.
@@ -14,5 +14,11 @@ Copy `.env.example` to `.env` and fill in your Last.fm and Spotify credentials. 
 Run the console recap:
 
 ```bash
-python weekly-email.py
+weekly-spotify-recap
+```
+
+You can also run it as a module:
+
+```bash
+python -m weekly_spotify_recap
 ```

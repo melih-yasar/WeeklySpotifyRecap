@@ -1,9 +1,9 @@
 import requests
 
-from console_output import print_console_summary
-from enrichment import enrich_summary_with_spotify
-from lastfm import get_all_tracks_last_7_days
-from summary import build_summary
+from .console_output import print_console_summary
+from .enrichment import enrich_summary_with_spotify
+from .lastfm import get_all_tracks_last_7_days
+from .summary import build_summary
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
     print_console_summary(summary, enriched)
 
 
-if __name__ == "__main__":
+def run():
     try:
         main()
 
@@ -35,3 +35,7 @@ if __name__ == "__main__":
 
     except Exception as e:
         print("Unexpected error:", e)
+
+
+if __name__ == "__main__":
+    run()

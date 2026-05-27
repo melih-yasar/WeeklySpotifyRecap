@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-from config import LASTFM_API_KEY, LASTFM_BASE_URL, LASTFM_HEADERS, LASTFM_USERNAME
+from .config import LASTFM_API_KEY, LASTFM_BASE_URL, LASTFM_HEADERS, LASTFM_USERNAME
 
 
 def lastfm_get(params):
