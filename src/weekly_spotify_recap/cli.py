@@ -2,15 +2,15 @@ import smtplib
 
 import requests
 
-from .config import RECIPIENT_EMAIL
-from .email_html import build_html_email
-from .enrichment import enrich_summary_with_spotify
-from .lastfm import get_all_tracks_last_7_days
-from .mailer import send_email
-from .summary import build_summary
-
 
 def main():
+    from .config import RECIPIENT_EMAIL
+    from .email_html import build_html_email
+    from .enrichment import enrich_summary_with_spotify
+    from .lastfm import get_all_tracks_last_7_days
+    from .mailer import send_email
+    from .summary import build_summary
+
     print("Loading Last.fm data...")
     tracks = get_all_tracks_last_7_days()
 

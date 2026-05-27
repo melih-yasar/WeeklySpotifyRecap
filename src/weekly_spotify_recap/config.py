@@ -1,15 +1,46 @@
 import os
+from pathlib import Path
 
 
-LASTFM_API_KEY = os.environ["LASTFM_API_KEY"]
-LASTFM_USERNAME = os.environ["LASTFM_USERNAME"]
+def load_dotenv():
+    env_path = Path.cwd() / ".env"
 
-SPOTIFY_CLIENT_ID = os.environ["SPOTIFY_CLIENT_ID"]
-SPOTIFY_CLIENT_SECRET = os.environ["SPOTIFY_CLIENT_SECRET"]
+    if not env_path.exists():
+        return
 
-GMAIL_ADDRESS = os.environ["GMAIL_ADDRESS"]
-GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
-RECIPIENT_EMAIL = os.environ["RECIPIENT_EMAIL"]
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+def required_env(name):
+    value = os.environ.get(name)
+
+    if not value:
+        raise RuntimeError(
+            f"Missing required environment variable: {name}. "
+            "Add it to your .env file or set it in PowerShell before running."
+        )
+
+    return value
+
+
+load_dotenv()
+
+LASTFM_API_KEY = required_env("LASTFM_API_KEY")
+LASTFM_USERNAME = required_env("LASTFM_USERNAME")
+
+SPOTIFY_CLIENT_ID = required_env("SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = required_env("SPOTIFY_CLIENT_SECRET")
+
+GMAIL_ADDRESS = required_env("GMAIL_ADDRESS")
+GMAIL_APP_PASSWORD = required_env("GMAIL_APP_PASSWORD")
+RECIPIENT_EMAIL = required_env("RECIPIENT_EMAIL")
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL", "")
 
