@@ -95,7 +95,7 @@ def build_top_album_rows(enriched):
     return "".join(rows)
 
 
-def build_html_email(summary, enriched):
+def build_html_email(summary, enriched, playlist_url=None):
     top_artist = summary["top_artists"][0][0] if summary["top_artists"] else "No data"
     top_track = summary["top_tracks"][0][0][1] if summary["top_tracks"] else "No data"
     top_track_artist = summary["top_tracks"][0][0][0] if summary["top_tracks"] else "No data"
@@ -110,6 +110,7 @@ def build_html_email(summary, enriched):
     hero = enriched["hero"] or {}
     hero_cover = hero.get("cover_url")
     hero_link = hero.get("spotify_url")
+    playlist_link = playlist_url or PLAYLIST_URL
 
     hero_image_html = (
         f'''
@@ -132,7 +133,7 @@ def build_html_email(summary, enriched):
     playlist_block = (
         f'''
         <div style="margin-top:24px;">
-            <a href="{PLAYLIST_URL}" style="
+            <a href="{playlist_link}" style="
                 display:inline-block;
                 background:#1ed760;
                 color:#0a0a0a;
@@ -145,7 +146,7 @@ def build_html_email(summary, enriched):
             </a>
         </div>
         '''
-        if PLAYLIST_URL
+        if playlist_link
         else ""
     )
 

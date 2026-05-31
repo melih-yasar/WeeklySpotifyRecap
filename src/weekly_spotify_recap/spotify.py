@@ -1,11 +1,19 @@
 import base64
+import json as json_module
 
 import requests
 
-from .config import SPOTIFY_API_BASE, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TOKEN_URL
+from .config import (
+    SPOTIFY_API_BASE,
+    SPOTIFY_CLIENT_ID,
+    SPOTIFY_CLIENT_SECRET,
+    SPOTIFY_REFRESH_TOKEN,
+    SPOTIFY_TOKEN_URL,
+)
 from .helpers import exact_name_match, relaxed_album_match
 
 _spotify_app_token_cache = None
+_spotify_user_token_cache = None
 
 
 def get_spotify_app_token():
@@ -33,6 +41,40 @@ def get_spotify_app_token():
     return _spotify_app_token_cache
 
 
+def get_spotify_user_token():
+    global _spotify_user_token_cache
+
+    if _spotify_user_token_cache:
+        return _spotify_user_token_cache
+
+    if not SPOTIFY_REFRESH_TOKEN:
+        raise RuntimeError(
+            "Missing SPOTIFY_REFRESH_TOKEN. Add a Spotify refresh token to "
+            "your .env file before creating or updating playlists."
+        )
+
+    raw = f"{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET}"
+    auth = base64.b64encode(raw.encode()).decode()
+
+    response = requests.post(
+        SPOTIFY_TOKEN_URL,
+        headers={
+            "Authorization": f"Basic {auth}",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data={
+            "grant_type": "refresh_token",
+            "refresh_token": SPOTIFY_REFRESH_TOKEN,
+        },
+        timeout=20,
+    )
+
+    response.raise_for_status()
+
+    _spotify_user_token_cache = response.json()["access_token"]
+    return _spotify_user_token_cache
+
+
 def spotify_get(path, params=None):
     token = get_spotify_app_token()
 
@@ -45,6 +87,61 @@ def spotify_get(path, params=None):
 
     response.raise_for_status()
     return response.json()
+
+
+def spotify_user_request(method, path, json=None, params=None, data=None, content_type=None):
+    token = get_spotify_user_token()
+    headers = {"Authorization": f"Bearer {token}"}
+
+    if content_type:
+        headers["Content-Type"] = content_type
+
+    response = requests.request(
+        method,
+        f"{SPOTIFY_API_BASE}{path}",
+        headers=headers,
+        json=json,
+        params=params,
+        data=data,
+        timeout=20,
+    )
+
+    if response.status_code == 403:
+        try:
+            message = response.json().get("error", {}).get("message", response.text)
+        except ValueError:
+            message = response.text
+
+        raise RuntimeError(
+            "Spotify refused the playlist request. Check that your Spotify "
+            "developer app has your account added under User Management and "
+            f"that the token has playlist scopes. Spotify said: {message}"
+        )
+
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as error:
+        details = response.text
+        try:
+            details = json_module.dumps(response.json())
+        except ValueError:
+            pass
+
+        raise RuntimeError(f"Spotify API request failed: {details}") from error
+
+    if response.content:
+        return response.json()
+
+    return {}
+
+
+def upload_playlist_cover_image(playlist_id, image_base64):
+    spotify_user_request(
+        "PUT",
+        f"/playlists/{playlist_id}/images",
+        data=image_base64,
+        content_type="image/jpeg",
+    )
 
 
 def spotify_search(query, item_type, limit=10):
@@ -134,6 +231,7 @@ def get_exact_spotify_track(artist_name, track_name):
 
                 return {
                     "name": item.get("name"),
+                    "uri": item.get("uri"),
                     "spotify_url": item.get("external_urls", {}).get("spotify"),
                     "album_cover_url": images[0]["url"] if images else None,
                     "album_name": album.get("name"),

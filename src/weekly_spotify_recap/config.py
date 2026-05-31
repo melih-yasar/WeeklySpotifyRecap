@@ -37,12 +37,22 @@ LASTFM_USERNAME = required_env("LASTFM_USERNAME")
 
 SPOTIFY_CLIENT_ID = required_env("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = required_env("SPOTIFY_CLIENT_SECRET")
+SPOTIFY_REFRESH_TOKEN = os.environ.get("SPOTIFY_REFRESH_TOKEN", "")
+SPOTIFY_PLAYLIST_ID = os.environ.get("SPOTIFY_PLAYLIST_ID", "")
+SPOTIFY_PLAYLIST_NAME = os.environ.get(
+    "SPOTIFY_PLAYLIST_NAME",
+    "Weekly Spotify Recap",
+)
 
 GMAIL_ADDRESS = required_env("GMAIL_ADDRESS")
 GMAIL_APP_PASSWORD = required_env("GMAIL_APP_PASSWORD")
 RECIPIENT_EMAIL = required_env("RECIPIENT_EMAIL")
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL", "")
+PLAYLIST_COVER_PATH = os.environ.get(
+    "PLAYLIST_COVER_PATH",
+    "assets/playlist-cover.jpg",
+)
 
 LASTFM_BASE_URL = "https://ws.audioscrobbler.com/2.0/"
 LASTFM_HEADERS = {"User-Agent": "M122E-WeeklyRecap/1.0"}
