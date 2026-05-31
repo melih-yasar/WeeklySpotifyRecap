@@ -41,7 +41,6 @@ WeeklySpotifyRecap/
 
 - [Setup Guide](docs/setup.md)
 - [Project Structure](docs/project-structure.md)
-- [Example Email Preview](examples/email-preview.html)
 
 ## Quick Run
 

@@ -19,13 +19,6 @@ docs/
 Project documentation. Start with `setup.md` for installation and API setup.
 
 ```text
-examples/
-```
-
-Example generated artifacts for GitHub visitors. `email-preview.html` shows what
-the recap email looks like without requiring API keys.
-
-```text
 scripts/
 ```
 
