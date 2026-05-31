@@ -61,7 +61,7 @@ Then run:
 ```powershell
 $env:SPOTIFY_CLIENT_ID="your-client-id"
 $env:SPOTIFY_CLIENT_SECRET="your-client-secret"
-py get-spotify-refresh-token.py
+py scripts/get-spotify-refresh-token.py
 ```
 
 Log in to Spotify, approve the playlist and image-upload permissions, then copy
