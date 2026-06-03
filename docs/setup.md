@@ -46,7 +46,7 @@ to update the same playlist.
 run, the app uses the playlist URL returned by Spotify.
 
 `PLAYLIST_COVER_PATH` is optional. If the file exists, the app uploads it as the
-Spotify playlist cover on every run.
+Spotify playlist image.
 
 ## 4. Get a Spotify refresh token
 
@@ -70,9 +70,5 @@ the printed `SPOTIFY_REFRESH_TOKEN=...` line into `.env`.
 ## 5. Run and send the recap email
 
 ```powershell
-$env:PYTHONPATH="src"
-py -m weekly_spotify_recap
+py src\weekly_spotify_recap\main.py
 ```
-
-Errors are saved to `logs/weekly_spotify_recap.log`.
-The latest HTML preview and text summary are saved in the `output` folder.

@@ -2,11 +2,8 @@ import base64
 from pathlib import Path
 
 from .config import PLAYLIST_COVER_PATH, SPOTIFY_PLAYLIST_ID, SPOTIFY_PLAYLIST_NAME
-from .spotify import (
-    get_exact_spotify_track,
-    spotify_user_request,
-    upload_playlist_cover_image,
-)
+from .spotify_api import spotify_request, upload_playlist_cover_image
+from .spotify_lookup import find_spotify_track
 
 
 def create_or_update_weekly_playlist(summary):
@@ -39,7 +36,7 @@ def get_top_track_uris(summary, limit=20):
     seen = set()
 
     for (artist, title), _plays in summary["top_tracks"][:limit]:
-        track_info = get_exact_spotify_track(artist, title)
+        track_info = find_spotify_track(artist, title)
         uri = (track_info or {}).get("uri")
 
         if uri and uri not in seen:
@@ -50,11 +47,11 @@ def get_top_track_uris(summary, limit=20):
 
 
 def get_playlist(playlist_id):
-    return spotify_user_request("GET", f"/playlists/{playlist_id}")
+    return spotify_request("GET", f"/playlists/{playlist_id}")
 
 
 def create_playlist(name):
-    return spotify_user_request(
+    return spotify_request(
         "POST",
         "/me/playlists",
         json={
@@ -66,7 +63,7 @@ def create_playlist(name):
 
 
 def replace_playlist_tracks(playlist_id, track_uris):
-    spotify_user_request(
+    spotify_request(
         "PUT",
         f"/playlists/{playlist_id}/items",
         json={"uris": track_uris},

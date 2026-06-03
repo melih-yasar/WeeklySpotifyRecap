@@ -1,50 +1,59 @@
 # Weekly Spotify Recap
 
-A Python automation project that creates a weekly music recap from Last.fm
-listening history, enriches it with Spotify data, updates a Spotify playlist,
-and sends the recap by email.
+This is my M122 automation project. It collects my Last.fm listening history for
+the last 7 days, creates a weekly Spotify playlist from the top songs, and sends
+the recap as an HTML email.
 
-## Features
+The goal is simple: collect music data automatically and show the weekly result
+in an email.
 
-- Fetches the last 7 days of Last.fm scrobbles
-- Calculates top artists, tracks, albums, listening time, busiest day, and peak hour
-- Enriches the recap with Spotify links and cover images
-- Creates or updates a Spotify playlist with the top weekly songs
-- Uploads a custom playlist cover
-- Sends a styled HTML email recap
-- Saves a local HTML preview, text summary, run history, and error log
+## What It Does
+
+- Fetches the last 7 days of Last.fm listening data
+- Calculates top artists, top songs, top albums, listening time, busiest day, and peak hour
+- Enriches the email with Spotify links and cover images
+- Creates or updates a Spotify playlist with the weekly top songs
+- Uploads a custom playlist image
+- Sends the recap by email
 
 ## Project Structure
 
 ```text
 WeeklySpotifyRecap/
-├── assets/                 # Static project assets, including playlist cover
-├── docs/                   # Setup and project documentation
-├── scripts/                # Helper scripts, e.g. Spotify refresh token setup
-├── src/weekly_spotify_recap/
-│   ├── cli.py              # Main application flow
-│   ├── config.py           # Environment variable loading
-│   ├── lastfm.py           # Last.fm API access
-│   ├── spotify.py          # Spotify API access
-│   ├── playlist.py         # Spotify playlist update logic
-│   ├── summary.py          # Weekly recap calculations
-│   ├── enrichment.py       # Spotify image/link enrichment
-│   ├── email_html.py       # HTML email template
-│   ├── mailer.py           # Gmail SMTP sending
-│   └── outputs.py          # Local preview, summary, and run history files
-├── .env.example            # Example environment variables
-├── requirements.txt        # Python dependencies
-└── weekly-email.py         # Simple launcher script
+|-- assets/                 # Playlist image
+|-- scripts/                # Helper scripts
+|-- tests/                  # Unit tests
+|-- src/weekly_spotify_recap/
+|   |-- main.py             # Run this file
+|   |-- config.py           # Environment variables
+|   |-- lastfm.py           # Collects Last.fm data
+|   |-- summary.py          # Calculates recap stats
+|   |-- enrichment.py       # Adds Spotify images and links
+|   |-- playlist.py         # Creates/updates the Spotify playlist
+|   |-- spotify_auth.py     # Spotify token handling
+|   |-- spotify_api.py      # Spotify requests
+|   |-- spotify_lookup.py   # Finds songs, albums, and artists on Spotify
+|   |-- email_html.py       # Builds the HTML email
+|   |-- mailer.py           # Sends the email
+|   `-- helpers.py          # Small helper functions
+|-- .env.example
+`-- requirements.txt
 ```
 
 ## Documentation
 
 - [Setup Guide](docs/setup.md)
-- [Project Structure](docs/project-structure.md)
+- [Testing Protocol](docs/testing-protocol.md)
 
-## Quick Run
+## Run
+
+```powershell
+py src\weekly_spotify_recap\main.py
+```
+
+## Tests
 
 ```powershell
 $env:PYTHONPATH="src"
-py -m weekly_spotify_recap
+py -m unittest discover -s tests -p "test_*.py"
 ```
