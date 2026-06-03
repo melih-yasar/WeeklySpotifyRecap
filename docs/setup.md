@@ -13,7 +13,46 @@ py -m venv .venv
 pip install -r requirements.txt
 ```
 
-## 3. Configure credentials
+## 3. Create a Last.fm API account
+
+1. Go to the official Last.fm API page: <https://www.last.fm/api>
+2. Log in with your Last.fm account.
+3. Click **Get an API account**.
+4. Fill in the application form.
+   - Application name: `Weekly Spotify Recap`
+   - Description: `School project that reads my weekly Last.fm listening data`
+   - Application homepage: you can use your GitHub repository link
+   - Callback URL: leave it empty for this project
+5. After creating the API account, copy the **API Key**.
+6. Put it into `.env` as `LASTFM_API_KEY`.
+
+You also need your Last.fm username. Put that into `.env` as
+`LASTFM_USERNAME`.
+
+## 4. Create a Spotify Developer app
+
+1. Go to the official Spotify Developer Dashboard:
+   <https://developer.spotify.com/dashboard>
+2. Log in with your Spotify account.
+3. Click **Create app**.
+4. Fill in the app form.
+   - App name: `Weekly Spotify Recap`
+   - App description: `School project that creates a weekly Spotify playlist`
+   - Website: you can use your GitHub repository link
+   - Redirect URI: `http://127.0.0.1:8888/callback`
+   - API/SDK: select **Web API**
+5. Save the app.
+6. Open the app settings and copy:
+   - **Client ID**
+   - **Client Secret**
+7. Put them into `.env` as `SPOTIFY_CLIENT_ID` and
+   `SPOTIFY_CLIENT_SECRET`.
+
+Important: the redirect URI in Spotify must be exactly
+`http://127.0.0.1:8888/callback`, because the refresh-token script uses that
+same address.
+
+## 5. Configure credentials
 
 Copy `.env.example` to `.env` and fill in your own values.
 
@@ -48,7 +87,38 @@ run, the app uses the playlist URL returned by Spotify.
 `PLAYLIST_COVER_PATH` is optional. If the file exists, the app uploads it as the
 Spotify playlist image.
 
-## 4. Get a Spotify refresh token
+## 6. Create a Gmail app password
+
+The app sends the recap email through Gmail SMTP. For that, do not use your
+normal Gmail password. Use a Gmail app password.
+
+1. Go to your Google Account security page:
+   <https://myaccount.google.com/security>
+2. Turn on **2-Step Verification** if it is not already enabled.
+3. Open the app passwords page:
+   <https://myaccount.google.com/apppasswords>
+4. Sign in again if Google asks you to.
+5. Create a new app password.
+   - App name: `Weekly Spotify Recap`
+6. Google shows a 16-digit password.
+7. Copy that password and put it into `.env` as `GMAIL_APP_PASSWORD`.
+8. Put your Gmail address into `.env` as `GMAIL_ADDRESS`.
+9. Put the email address that should receive the recap into `.env` as
+   `RECIPIENT_EMAIL`.
+
+Example:
+
+```env
+GMAIL_ADDRESS=your-gmail-address@gmail.com
+GMAIL_APP_PASSWORD=your-16-digit-app-password
+RECIPIENT_EMAIL=receiver@example.com
+```
+
+If Google does not show the app passwords page, check that 2-Step Verification is
+enabled. App passwords are only available for accounts that can use 2-Step
+Verification.
+
+## 7. Get a Spotify refresh token
 
 In your Spotify developer app, add this redirect URI:
 
@@ -67,7 +137,7 @@ py scripts/get-spotify-refresh-token.py
 Log in to Spotify, approve the playlist and image-upload permissions, then copy
 the printed `SPOTIFY_REFRESH_TOKEN=...` line into `.env`.
 
-## 5. Run and send the recap email
+## 8. Run and send the recap email
 
 ```powershell
 py src\weekly_spotify_recap\main.py
