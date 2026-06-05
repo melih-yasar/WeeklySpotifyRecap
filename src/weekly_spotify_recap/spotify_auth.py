@@ -1,3 +1,5 @@
+"""Create and cache Spotify access tokens."""
+
 import base64
 
 import requests
@@ -14,6 +16,7 @@ _spotify_user_token_cache = None
 
 
 def get_spotify_app_token():
+    """Return an app token for public Spotify search requests."""
     global _spotify_app_token_cache
 
     if _spotify_app_token_cache:
@@ -32,6 +35,7 @@ def get_spotify_app_token():
 
 
 def get_spotify_user_token():
+    """Return a user token for playlist changes."""
     global _spotify_user_token_cache
 
     if _spotify_user_token_cache:
@@ -53,6 +57,7 @@ def get_spotify_user_token():
 
 
 def basic_auth_headers():
+    """Build the Basic Auth headers Spotify needs for token requests."""
     raw = f"{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET}"
     auth = base64.b64encode(raw.encode()).decode()
 

@@ -1,3 +1,5 @@
+"""Create and update the weekly Spotify playlist."""
+
 import base64
 from pathlib import Path
 
@@ -7,6 +9,7 @@ from .spotify_lookup import find_spotify_track
 
 
 def create_or_update_weekly_playlist(summary):
+    """Create or update the playlist and return playlist information."""
     track_uris = get_top_track_uris(summary)
 
     if not track_uris:
@@ -32,6 +35,7 @@ def create_or_update_weekly_playlist(summary):
 
 
 def get_top_track_uris(summary, limit=20):
+    """Find Spotify URIs for the top tracks in the summary."""
     uris = []
     seen = set()
 
@@ -47,10 +51,12 @@ def get_top_track_uris(summary, limit=20):
 
 
 def get_playlist(playlist_id):
+    """Load an existing Spotify playlist by ID."""
     return spotify_request("GET", f"/playlists/{playlist_id}")
 
 
 def create_playlist(name):
+    """Create a private Spotify playlist for the weekly recap."""
     return spotify_request(
         "POST",
         "/me/playlists",
@@ -63,6 +69,7 @@ def create_playlist(name):
 
 
 def replace_playlist_tracks(playlist_id, track_uris):
+    """Replace the playlist contents with the given track URIs."""
     spotify_request(
         "PUT",
         f"/playlists/{playlist_id}/items",
@@ -71,6 +78,7 @@ def replace_playlist_tracks(playlist_id, track_uris):
 
 
 def upload_cover_if_available(playlist_id):
+    """Upload the configured playlist cover image when the file exists."""
     cover_path = Path(PLAYLIST_COVER_PATH)
 
     if not cover_path.exists():

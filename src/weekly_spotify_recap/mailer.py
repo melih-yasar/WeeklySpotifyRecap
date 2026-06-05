@@ -1,3 +1,5 @@
+"""Send the recap email through Gmail SMTP."""
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -6,6 +8,7 @@ from .config import GMAIL_ADDRESS, GMAIL_APP_PASSWORD, RECIPIENT_EMAIL
 
 
 def send_email(html_content):
+    """Send the given HTML content as the weekly recap email."""
     msg = MIMEMultipart("alternative")
     msg["Subject"] = "Your Weekly Music Recap"
     msg["From"] = GMAIL_ADDRESS

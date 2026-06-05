@@ -1,3 +1,5 @@
+"""Low-level Spotify Web API request helpers."""
+
 import requests
 
 from .config import SPOTIFY_API_BASE
@@ -5,6 +7,7 @@ from .spotify_auth import get_spotify_app_token, get_spotify_user_token
 
 
 def spotify_get(path, params=None):
+    """Send a Spotify GET request using an app access token."""
     response = requests.get(
         f"{SPOTIFY_API_BASE}{path}",
         headers={"Authorization": f"Bearer {get_spotify_app_token()}"},
@@ -16,6 +19,7 @@ def spotify_get(path, params=None):
 
 
 def spotify_request(method, path, json=None, params=None, data=None, content_type=None):
+    """Send a Spotify user request using the refresh-token login."""
     headers = {"Authorization": f"Bearer {get_spotify_user_token()}"}
 
     if content_type:
@@ -34,6 +38,7 @@ def spotify_request(method, path, json=None, params=None, data=None, content_typ
 
 
 def spotify_search(query, item_type, limit=10):
+    """Search Spotify for artists, albums, or tracks."""
     return spotify_get(
         "/search",
         params={"q": query, "type": item_type, "limit": limit},
@@ -41,6 +46,7 @@ def spotify_search(query, item_type, limit=10):
 
 
 def upload_playlist_cover_image(playlist_id, image_base64):
+    """Upload a base64 encoded JPEG image as the playlist cover."""
     spotify_request(
         "PUT",
         f"/playlists/{playlist_id}/images",
@@ -50,6 +56,7 @@ def upload_playlist_cover_image(playlist_id, image_base64):
 
 
 def handle_user_response(response):
+    """Convert Spotify playlist responses into data or readable errors."""
     if response.status_code == 403:
         raise RuntimeError(f"Spotify refused the playlist request: {spotify_error(response)}")
 
@@ -62,6 +69,7 @@ def handle_user_response(response):
 
 
 def spotify_error(response):
+    """Extract a readable error message from a Spotify response."""
     try:
         data = response.json()
     except ValueError:

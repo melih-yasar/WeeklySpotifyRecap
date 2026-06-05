@@ -1,7 +1,10 @@
+"""Build recap statistics from collected listening data."""
+
 from collections import Counter
 
 
 def build_summary(tracks):
+    """Build the full weekly summary used by the email and playlist."""
     artist_counter, track_counter, album_counter = music_counters(tracks)
     day_counter, hour_counter = time_counters(tracks)
 
@@ -18,6 +21,7 @@ def build_summary(tracks):
 
 
 def music_counters(tracks):
+    """Count artists, tracks, and albums."""
     artist_counter = Counter()
     track_counter = Counter()
     album_counter = Counter()
@@ -31,6 +35,7 @@ def music_counters(tracks):
 
 
 def time_counters(tracks):
+    """Count listening activity by weekday and hour."""
     day_counter = Counter()
     hour_counter = Counter()
 
@@ -42,12 +47,15 @@ def time_counters(tracks):
 
 
 def latest_track(tracks):
+    """Return the most recently played track."""
     return max(tracks, key=lambda track: track["played_at"], default=None)
 
 
 def most_common_day(day_counter):
+    """Return the day with the highest number of plays."""
     return day_counter.most_common(1)[0] if day_counter else ("Unknown", 0)
 
 
 def favorite_hour(hour_counter):
+    """Return the hour with the highest number of plays."""
     return hour_counter.most_common(1)[0][0] if hour_counter else None

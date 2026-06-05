@@ -1,3 +1,5 @@
+"""Main program flow for the Weekly Spotify Recap app."""
+
 import smtplib
 
 import requests
@@ -11,6 +13,7 @@ if not __package__:
 
 
 def main():
+    """Run the complete recap workflow."""
     tracks = load_tracks()
 
     if not tracks:
@@ -25,6 +28,7 @@ def main():
 
 
 def load_tracks():
+    """Load the last 7 days of listening data from Last.fm."""
     from .lastfm import get_all_tracks_last_7_days
 
     print("Loading Last.fm data...")
@@ -37,6 +41,7 @@ def load_tracks():
 
 
 def build_weekly_summary(tracks):
+    """Create the weekly summary from collected tracks."""
     from .summary import build_summary
 
     print("Building summary...")
@@ -44,6 +49,7 @@ def build_weekly_summary(tracks):
 
 
 def load_spotify_email_data(summary):
+    """Add Spotify images and links for the email content."""
     from .enrichment import enrich_summary_with_spotify
 
     print("Loading Spotify images and links...")
@@ -51,6 +57,7 @@ def load_spotify_email_data(summary):
 
 
 def update_playlist(summary):
+    """Create or update the Spotify playlist for the current recap."""
     from .playlist import create_or_update_weekly_playlist
 
     print("Creating/updating Spotify playlist...")
@@ -60,6 +67,7 @@ def update_playlist(summary):
 
 
 def send_recap_email(summary, enriched, playlist):
+    """Build the HTML email and send it to the configured recipient."""
     from .config import RECIPIENT_EMAIL
     from .email_html import build_html_email
     from .mailer import send_email
@@ -74,6 +82,7 @@ def send_recap_email(summary, enriched, playlist):
 
 
 def run():
+    """Run the app and print readable messages for important errors."""
     try:
         main()
 

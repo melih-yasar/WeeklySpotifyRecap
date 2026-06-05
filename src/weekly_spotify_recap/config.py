@@ -1,8 +1,11 @@
+"""Load environment variables and shared configuration values."""
+
 import os
 from pathlib import Path
 
 
 def load_dotenv():
+    """Load key-value pairs from a local .env file into environment variables."""
     env_path = Path.cwd() / ".env"
 
     if not env_path.exists():
@@ -19,6 +22,7 @@ def load_dotenv():
 
 
 def required_env(name):
+    """Return a required environment variable or raise a clear error."""
     value = os.environ.get(name)
 
     if not value:

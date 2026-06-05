@@ -1,8 +1,11 @@
+"""Find matching Spotify artists, albums, and tracks."""
+
 from .helpers import exact_name_match, relaxed_album_match
 from .spotify_api import spotify_search
 
 
 def find_spotify_artist(artist_name):
+    """Find a Spotify artist that matches the given artist name."""
     data = spotify_search(f'artist:"{artist_name}"', "artist", limit=10)
 
     for item in data.get("artists", {}).get("items", []):
@@ -17,6 +20,7 @@ def find_spotify_artist(artist_name):
 
 
 def find_spotify_album(artist_name, album_name):
+    """Find a Spotify album for the given artist and album name."""
     data = spotify_search(
         f'album:"{album_name}" artist:"{artist_name}"',
         "album",
@@ -37,6 +41,7 @@ def find_spotify_album(artist_name, album_name):
 
 
 def find_spotify_track(artist_name, track_name):
+    """Find a Spotify track for the given artist and track name."""
     data = spotify_search(
         f'track:"{track_name}" artist:"{artist_name}"',
         "track",
@@ -51,6 +56,7 @@ def find_spotify_track(artist_name, track_name):
 
 
 def find_album(items, artist_name, album_name, name_matcher):
+    """Return the first album matching the name and artist."""
     for item in items:
         if name_matcher(item.get("name", ""), album_name) and has_artist(item, artist_name):
             return album_result(item)
@@ -59,10 +65,12 @@ def find_album(items, artist_name, album_name, name_matcher):
 
 
 def track_matches(item, artist_name, track_name):
+    """Check whether a Spotify track result matches the requested track."""
     return exact_name_match(item.get("name", ""), track_name) and has_artist(item, artist_name)
 
 
 def has_artist(item, artist_name):
+    """Check whether a Spotify item contains the requested artist."""
     return any(
         exact_name_match(artist.get("name", ""), artist_name)
         for artist in item.get("artists", [])
@@ -70,6 +78,7 @@ def has_artist(item, artist_name):
 
 
 def track_result(item):
+    """Convert a Spotify track result into the app's track format."""
     album = item.get("album", {})
 
     return {
@@ -82,6 +91,7 @@ def track_result(item):
 
 
 def album_result(item):
+    """Convert a Spotify album result into the app's album format."""
     return {
         "name": item.get("name"),
         "image_url": first_image(item),
@@ -90,5 +100,6 @@ def album_result(item):
 
 
 def first_image(item):
+    """Return the first image URL from a Spotify item."""
     images = item.get("images", [])
     return images[0]["url"] if images else None

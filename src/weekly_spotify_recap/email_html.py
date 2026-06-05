@@ -1,8 +1,11 @@
+"""Build the Spotify-style HTML email."""
+
 from .config import PLAYLIST_URL
 from .helpers import estimate_listening_hours
 
 
 def build_top_artist_cards(enriched):
+    """Build the table cells for the top artist cards."""
     cards = []
 
     for index, item in enumerate(enriched["artists"], start=1):
@@ -24,6 +27,7 @@ def build_top_artist_cards(enriched):
 
 
 def build_top_track_rows(enriched):
+    """Build table rows for top tracks."""
     rows = []
 
     for index, item in enumerate(enriched["tracks"], start=1):
@@ -36,6 +40,7 @@ def build_top_track_rows(enriched):
 
 
 def build_top_album_rows(enriched):
+    """Build table rows for top albums."""
     rows = []
 
     for index, item in enumerate(enriched["albums"], start=1):
@@ -48,6 +53,7 @@ def build_top_album_rows(enriched):
 
 
 def build_html_email(summary, enriched, playlist_url=None):
+    """Build the complete HTML email from summary and Spotify data."""
     data = email_data(summary, enriched, playlist_url)
 
     return email_page(f"""
@@ -61,6 +67,7 @@ def build_html_email(summary, enriched, playlist_url=None):
 
 
 def email_data(summary, enriched, playlist_url):
+    """Prepare values that are reused in multiple email sections."""
     busiest_day, busiest_day_plays = summary["busiest_day"]
     favorite_hour = summary["favorite_hour"]
 
@@ -79,6 +86,7 @@ def email_data(summary, enriched, playlist_url):
 
 
 def email_page(content):
+    """Wrap all email sections in the main HTML page layout."""
     return f"""
     <html>
     <body style="margin:0;padding:0;background:#0b0b0b;font-family:Arial,Helvetica,sans-serif;">
@@ -99,6 +107,7 @@ def email_page(content):
 
 
 def hero_section(data):
+    """Build the green hero section at the top of the email."""
     return f"""
     <tr>
         <td style="padding:34px;">
@@ -120,6 +129,7 @@ def hero_section(data):
 
 
 def hero_copy(data):
+    """Build the left side of the hero section."""
     return f"""
     <td width="56%" valign="top" style="padding-right:18px;">
         <div style="font-size:12px;color:#d9ffe4;letter-spacing:2px;text-transform:uppercase;font-weight:700;">
@@ -142,6 +152,7 @@ def hero_copy(data):
 
 
 def hero_card(hero):
+    """Build the latest-listen card in the hero section."""
     return f"""
     <td width="44%" valign="middle" align="center">
         <div style="background:rgba(0,0,0,0.12);border-radius:28px;padding:24px;text-align:center;">
@@ -163,6 +174,7 @@ def hero_card(hero):
 
 
 def stats_section(data):
+    """Build the three stat cards below the hero section."""
     return f"""
     <tr>
         <td style="padding:0 34px 8px 34px;">
@@ -179,6 +191,7 @@ def stats_section(data):
 
 
 def stat_card(label, value):
+    """Build one small stat card."""
     return f"""
     <td width="33.33%" style="padding:8px;">
         <div style="background:#181818;border-radius:20px;padding:20px;">
@@ -190,6 +203,7 @@ def stat_card(label, value):
 
 
 def highlights_section(data):
+    """Build the weekly highlights text block."""
     summary = data["summary"]
     return f"""
     <tr>
@@ -209,18 +223,22 @@ def highlights_section(data):
 
 
 def artists_section(enriched):
+    """Build the top artists section."""
     return section_with_table("Top artists", f"<tr>{build_top_artist_cards(enriched)}</tr>")
 
 
 def tracks_section(enriched):
+    """Build the top tracks section."""
     return dark_table_section("Top tracks", build_top_track_rows(enriched))
 
 
 def albums_section(enriched):
+    """Build the top albums section."""
     return dark_table_section("Top albums", build_top_album_rows(enriched), last=True)
 
 
 def section_with_table(title, rows):
+    """Build a normal section containing a table."""
     return f"""
     <tr>
         <td style="padding:28px 34px 0 34px;">
@@ -236,6 +254,7 @@ def section_with_table(title, rows):
 
 
 def dark_table_section(title, rows, last=False):
+    """Build a dark card section containing table rows."""
     padding = "28px 34px 34px 34px" if last else "28px 34px 0 34px"
     return f"""
     <tr>
@@ -254,6 +273,7 @@ def dark_table_section(title, rows, last=False):
 
 
 def hero_image(hero):
+    """Build the latest-listen image or a placeholder."""
     cover = hero.get("cover_url")
     link = hero.get("spotify_url")
 
@@ -275,6 +295,7 @@ def hero_image(hero):
 
 
 def playlist_button(link):
+    """Build the playlist button when a link is available."""
     if not link:
         return ""
 
@@ -296,6 +317,7 @@ def playlist_button(link):
 
 
 def artist_image(item):
+    """Build an artist image or a placeholder."""
     if item["image_url"]:
         return (
             f'<img src="{item["image_url"]}" alt="{item["artist"]}" '
@@ -306,6 +328,7 @@ def artist_image(item):
 
 
 def cover_image(url, alt):
+    """Build an album cover image or a placeholder."""
     if url:
         return f'<img src="{url}" alt="{alt}" style="width:64px;height:64px;border-radius:12px;object-fit:cover;display:block;">'
 
@@ -313,6 +336,7 @@ def cover_image(url, alt):
 
 
 def linked_text(text, url):
+    """Return linked text when a Spotify URL is available."""
     if url:
         return f'<a href="{url}" style="color:#ffffff;text-decoration:none;">{text}</a>'
 
@@ -320,6 +344,7 @@ def linked_text(text, url):
 
 
 def track_or_album_row(index, image_html, title_html, artist, plays):
+    """Build one reusable track or album table row."""
     return f"""
     <tr>
         <td style="padding:14px 0;color:#8f8f8f;font-size:14px;width:34px;">{index}</td>
