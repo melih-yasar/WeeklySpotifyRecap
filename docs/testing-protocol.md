@@ -50,7 +50,7 @@ The tests focus on the documented project proposal:
 ## Latest Test Result
 
 ```text
-Ran 35 tests
+Ran 34 tests
 
 OK
 ```
