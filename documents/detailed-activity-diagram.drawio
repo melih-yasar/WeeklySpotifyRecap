@@ -1,62 +1,74 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Detailed Activity Diagram">
-    <mxGraphModel dx="900" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="1100" dy="1350" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1350" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
-        <mxCell id="start" value="Start Script" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5f5c4;strokeColor=#6aa84f;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="350" y="30" width="150" height="55" as="geometry"/>
+        <mxCell id="start" value="Start weekly recap script" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5f5c4;strokeColor=#6aa84f;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="425" y="30" width="230" height="60" as="geometry"/>
         </mxCell>
-        <mxCell id="env" value="Load .env Credentials" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="120" width="220" height="55" as="geometry"/>
+        <mxCell id="env" value="Load .env configuration and validate required variables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="125" width="320" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="lastfm" value="Fetch Last 7 Days From Last.fm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="210" width="220" height="55" as="geometry"/>
+        <mxCell id="lastfm" value="Fetch recent tracks from Last.fm API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="230" width="320" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="hasTracks" value="Tracks Found?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="350" y="300" width="150" height="90" as="geometry"/>
+        <mxCell id="filter" value="Filter tracks to last 7 days" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="335" width="320" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="summary" value="Build Weekly Summary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="430" width="220" height="55" as="geometry"/>
+        <mxCell id="hasTracks" value="Tracks found?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="440" y="445" width="200" height="105" as="geometry"/>
         </mxCell>
-        <mxCell id="enrich" value="Find Spotify Images and Links" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="520" width="220" height="55" as="geometry"/>
+        <mxCell id="none" value="Print no-scrobbles message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="755" y="462" width="245" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="playlist" value="Create or Update Spotify Playlist" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="610" width="220" height="55" as="geometry"/>
+        <mxCell id="summary" value="Build weekly summary: top artists, tracks, albums, total plays, busiest day, peak hour" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="595" width="320" height="90" as="geometry"/>
         </mxCell>
-        <mxCell id="cover" value="Upload Playlist Cover Image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="700" width="220" height="55" as="geometry"/>
+        <mxCell id="spotifyLookup" value="Authenticate with Spotify and find matching images and links" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="725" width="320" height="80" as="geometry"/>
         </mxCell>
-        <mxCell id="email" value="Build HTML Email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="790" width="220" height="55" as="geometry"/>
+        <mxCell id="playlist" value="Create or update private Spotify playlist with top songs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="845" width="320" height="80" as="geometry"/>
         </mxCell>
-        <mxCell id="send" value="Send Email Through Gmail SMTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="315" y="880" width="220" height="55" as="geometry"/>
+        <mxCell id="coverDecision" value="Cover image exists?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="450" y="965" width="180" height="100" as="geometry"/>
         </mxCell>
-        <mxCell id="error" value="Print Clear Error Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4cccc;strokeColor=#cc0000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="600" y="880" width="190" height="55" as="geometry"/>
+        <mxCell id="cover" value="Upload playlist cover image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="755" y="980" width="245" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="none" value="Print No Scrobbles Found" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="600" y="322" width="190" height="55" as="geometry"/>
+        <mxCell id="email" value="Build Spotify-style HTML email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1105" width="320" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="end" value="End Script" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f4cccc;strokeColor=#cc0000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="350" y="1010" width="150" height="55" as="geometry"/>
+        <mxCell id="send" value="Send recap email through Gmail SMTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1210" width="320" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="error" value="Print clear error message for API, runtime, or SMTP failure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4cccc;strokeColor=#cc0000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="755" y="1135" width="245" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="end" value="End script" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f4cccc;strokeColor=#cc0000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="425" y="1315" width="230" height="60" as="geometry"/>
         </mxCell>
         <mxCell id="a1" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="start" target="env"><mxGeometry relative="1" as="geometry"/></mxCell>
         <mxCell id="a2" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="env" target="lastfm"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a3" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="lastfm" target="hasTracks"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a4" value="Yes" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="hasTracks" target="summary"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a5" value="No" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="hasTracks" target="none"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a6" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="summary" target="enrich"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a7" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="enrich" target="playlist"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a8" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="playlist" target="cover"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a9" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="cover" target="email"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a10" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="email" target="send"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a11" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="send" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a12" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="none" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a13" value="API / SMTP Error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="send" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a14" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="error" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a3" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="lastfm" target="filter"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a4" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="filter" target="hasTracks"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a5" value="Yes" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="hasTracks" target="summary"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a6" value="No" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="hasTracks" target="none"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a7" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="summary" target="spotifyLookup"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a8" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="spotifyLookup" target="playlist"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a9" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="playlist" target="coverDecision"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a10" value="Yes" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="coverDecision" target="cover"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a11" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="cover" target="email"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a12" value="No" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="coverDecision" target="email"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a13" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="email" target="send"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a14" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="send" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a15" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="none" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a16" value="API error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="lastfm" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a17" value="Spotify error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="spotifyLookup" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a18" value="Playlist error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="playlist" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a19" value="SMTP error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="send" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a20" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="error" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

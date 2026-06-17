@@ -82,7 +82,7 @@ maintenance phase is out of scope.
 | Phase | Main work | Result |
 | --- | --- | --- |
 | Requirements Analysis | Define the automation goal, benefits, involved systems, and MoSCoW requirements. | Project proposal in `documents/M122E_ProjectProposal_Melih.pdf`. |
-| Design | Plan modules, data flow, API interactions, email layout, and diagrams. | Activity diagram and component/deployment diagram in `documents/`. |
+| Design | Plan modules, data flow, API interactions, email layout, local deployment, and diagrams. | Activity diagram and component/deployment diagram in `documents/`. |
 | Implementation | Build Last.fm loading, summary calculation, Spotify authentication/search/playlist handling, HTML email generation, and Gmail sending. | Working Python script in `src/weekly_spotify_recap/`. |
 | Integration and Testing | Test normal flow, empty data, API errors, SMTP errors, playlist behavior, and formatting helpers. | Unit tests in `tests/` and test protocol in `docs/testing-protocol.md`. |
 | Deployment | Prepare local configuration and optional Windows Task Scheduler execution. | Script can be run manually or scheduled weekly. |
@@ -144,9 +144,9 @@ The design documents required by the assignment are stored in `documents/`:
 
 | Document | Purpose |
 | --- | --- |
-| `documents/detailed-activity-diagram.png` | Detailed activity diagram for the script workflow. |
+| `documents/detailed-activity-diagram.png` | Detailed UML activity diagram for the script workflow, including decisions and error paths. |
 | `documents/detailed-activity-diagram.drawio` | Editable source for the activity diagram. |
-| `documents/component-and-deployment-diagram.png` | Component/deployment diagram showing APIs, local script, filesystem, SMTP, and scheduler interaction. |
+| `documents/component-and-deployment-diagram.png` | UML component/deployment diagram showing the Windows PC, Python runtime, local filesystem, scheduler, APIs, and SMTP interaction. |
 | `documents/component-and-deployment-diagram.drawio` | Editable source for the component/deployment diagram. |
 | `documents/M122E_ProjectProposal_Melih.pdf` | Project proposal context and original scope. |
 
