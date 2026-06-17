@@ -1,5 +1,19 @@
 # Setup
 
+## Visual overview
+
+Official setup links:
+
+| Topic | Official link |
+| --- | --- |
+| Python | [Python downloads](https://www.python.org/downloads/) |
+| Last.fm API | [Last.fm API](https://www.last.fm/api) |
+| Spotify Developer Dashboard | [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) |
+| Spotify authorization code flow | [Authorization code flow](https://developer.spotify.com/documentation/web-api/tutorials/code-flow) |
+| Spotify scopes | [Spotify scopes](https://developer.spotify.com/documentation/web-api/concepts/scopes) |
+| Google app passwords | [Google app passwords](https://support.google.com/accounts/answer/185833) |
+| Gmail SMTP settings | [Gmail SMTP settings](https://support.google.com/mail/answer/7126229) |
+
 ## 1. Create a virtual environment
 
 ```powershell

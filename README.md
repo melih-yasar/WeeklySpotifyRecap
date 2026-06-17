@@ -276,6 +276,21 @@ Do not commit `.env` to git.
 
 ## 8. API And Account Setup
 
+### 8.0 Visual Setup Overview
+
+Official setup links:
+
+| Topic | Official link | Use |
+| --- | --- | --- |
+| Python | [Python downloads](https://www.python.org/downloads/) | Install Python for running the script and tests. |
+| Last.fm API | [Last.fm API](https://www.last.fm/api) | Create the API account and get `LASTFM_API_KEY`. |
+| Spotify Developer Dashboard | [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) | Create the Spotify app and copy client credentials. |
+| Spotify authorization code flow | [Authorization code flow](https://developer.spotify.com/documentation/web-api/tutorials/code-flow) | Understand the refresh-token login flow. |
+| Spotify scopes | [Spotify scopes](https://developer.spotify.com/documentation/web-api/concepts/scopes) | Check playlist and image-upload permissions. |
+| Google app passwords | [Google app passwords](https://support.google.com/accounts/answer/185833) | Create the Gmail app password. |
+| Gmail SMTP settings | [Gmail SMTP settings](https://support.google.com/mail/answer/7126229) | Check Gmail SMTP access and settings. |
+| Windows Task Scheduler | [Task Scheduler documentation](https://learn.microsoft.com/windows/win32/taskschd/task-scheduler-start-page) | Learn how Windows scheduled tasks work. |
+
 ### 8.1 Last.fm API
 
 1. Go to `https://www.last.fm/api`.
@@ -484,6 +499,19 @@ The local run log contains evidence of a successful email and playlist run from
 03.06.2026.
 
 ## 13. Troubleshooting
+
+Official help pages:
+
+| Problem area | Official link |
+| --- | --- |
+| Last.fm API key or API response problems | [Last.fm API](https://www.last.fm/api) |
+| Spotify developer app setup | [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) |
+| Spotify authorization and refresh token flow | [Authorization code flow](https://developer.spotify.com/documentation/web-api/tutorials/code-flow) |
+| Spotify permissions/scopes | [Spotify scopes](https://developer.spotify.com/documentation/web-api/concepts/scopes) |
+| Gmail app password problems | [Google app passwords](https://support.google.com/accounts/answer/185833) |
+| Gmail SMTP settings | [Gmail SMTP settings](https://support.google.com/mail/answer/7126229) |
+| Windows Task Scheduler setup | [Task Scheduler documentation](https://learn.microsoft.com/windows/win32/taskschd/task-scheduler-start-page) |
+| Python installation | [Python downloads](https://www.python.org/downloads/) |
 
 ### Missing Environment Variable
 

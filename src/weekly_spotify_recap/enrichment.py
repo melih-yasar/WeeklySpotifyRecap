@@ -11,15 +11,24 @@ from .spotify_lookup import (
 def enrich_summary_with_spotify(summary):
     """Build all Spotify-enriched sections used by the email."""
     return {
-        "hero": build_hero(summary["latest_track"]),
-        "artists": build_artist_cards(summary),
-        "tracks": build_track_cards(summary),
-        "albums": build_album_cards(summary),
+        "hero": _enrich_latest_track(summary["latest_track"]),
+        "artists": [
+            _enrich_artist(artist, plays)
+            for artist, plays in summary["top_artists"][:3]
+        ],
+        "tracks": [
+            _enrich_track(summary, artist, title, plays)
+            for (artist, title), plays in summary["top_tracks"][:5]
+        ],
+        "albums": [
+            _enrich_album(artist, album, plays)
+            for (artist, album), plays in summary["top_albums"][:5]
+        ],
     }
 
 
-def build_hero(latest):
-    """Build the latest-listen hero section data."""
+def _enrich_latest_track(latest):
+    """Build Spotify data for the latest-listen hero section."""
     if not latest:
         return None
 
@@ -35,16 +44,8 @@ def build_hero(latest):
     }
 
 
-def build_artist_cards(summary):
-    """Build Spotify data for the top artist cards."""
-    return [
-        artist_card(artist, plays)
-        for artist, plays in summary["top_artists"][:3]
-    ]
-
-
-def artist_card(artist, plays):
-    """Build one top artist card."""
+def _enrich_artist(artist, plays):
+    """Build Spotify data for one top artist card."""
     artist_info = find_spotify_artist(artist) or {}
     return {
         "artist": artist,
@@ -54,16 +55,8 @@ def artist_card(artist, plays):
     }
 
 
-def build_track_cards(summary):
-    """Build Spotify data for the top track rows."""
-    return [
-        track_card(summary, artist, title, plays)
-        for (artist, title), plays in summary["top_tracks"][:5]
-    ]
-
-
-def track_card(summary, artist, title, plays):
-    """Build one top track row with album cover data."""
+def _enrich_track(summary, artist, title, plays):
+    """Build Spotify data for one top track row."""
     album_name = find_album_for_track(summary, artist, title)
     track_info = find_spotify_track(artist, title) or {}
     album_info = find_spotify_album(artist, album_name) or {}
@@ -78,16 +71,8 @@ def track_card(summary, artist, title, plays):
     }
 
 
-def build_album_cards(summary):
-    """Build Spotify data for the top album rows."""
-    return [
-        album_card(artist, album, plays)
-        for (artist, album), plays in summary["top_albums"][:5]
-    ]
-
-
-def album_card(artist, album, plays):
-    """Build one top album row."""
+def _enrich_album(artist, album, plays):
+    """Build Spotify data for one top album row."""
     album_info = find_spotify_album(artist, album) or {}
     return {
         "artist": artist,
