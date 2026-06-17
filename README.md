@@ -142,6 +142,14 @@ Specialized modules handle each separate responsibility.
 
 The design documents required by the assignment are stored in `documents/`:
 
+#### Detailed Activity Diagram
+
+![Detailed UML activity diagram](documents/detailed-activity-diagram.png)
+
+#### Component And Deployment Diagram
+
+![UML component and deployment diagram](documents/component-and-deployment-diagram.png)
+
 | Document | Purpose |
 | --- | --- |
 | `documents/detailed-activity-diagram.png` | Detailed UML activity diagram for the script workflow, including decisions and error paths. |
