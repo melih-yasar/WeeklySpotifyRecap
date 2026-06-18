@@ -17,59 +17,20 @@ a Spotify-style HTML email.
 
 ## Setup
 
-Create a virtual environment and install dependencies:
+For the full setup guide with screenshots, see the [Setup Guide](docs/setup.md).
+
+Quick start:
 
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-```
-
-Copy the environment template:
-
-```powershell
 Copy-Item .env.example .env
 ```
 
-Fill in `.env`:
-
-```env
-LASTFM_API_KEY=
-LASTFM_USERNAME=
-SPOTIFY_CLIENT_ID=
-SPOTIFY_CLIENT_SECRET=
-SPOTIFY_REFRESH_TOKEN=
-SPOTIFY_PLAYLIST_ID=
-SPOTIFY_PLAYLIST_NAME=Weekly Spotify Recap
-PLAYLIST_COVER_PATH=assets/playlist-cover.jpg
-GMAIL_ADDRESS=
-GMAIL_APP_PASSWORD=
-RECIPIENT_EMAIL=
-PLAYLIST_URL=
-```
-
-Important: connect Spotify to Last.fm first, otherwise Spotify listening history
-may not appear in Last.fm. Use the official Last.fm page:
-<https://www.last.fm/about/trackmymusic>
-
-## Spotify Refresh Token
-
-Create a Spotify app in the Spotify Developer Dashboard and add this redirect
-URI:
-
-```text
-http://127.0.0.1:8888/callback
-```
-
-Then run:
-
-```powershell
-$env:SPOTIFY_CLIENT_ID="your-client-id"
-$env:SPOTIFY_CLIENT_SECRET="your-client-secret"
-py scripts/get-spotify-refresh-token.py
-```
-
-Copy the printed `SPOTIFY_REFRESH_TOKEN=...` value into `.env`.
+Fill in `.env` with the required Last.fm, Spotify, and Gmail values. Before
+running the app, connect Spotify to Last.fm so Last.fm receives the listening
+history.
 
 ## Run
 
