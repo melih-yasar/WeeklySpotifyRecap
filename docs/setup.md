@@ -37,6 +37,7 @@ pip install -r requirements.txt
 ![Last.fm Get an API account button](screenshots/lastfm-get-api-account.png)
 
 4. Fill in the application form.
+   - Contact email: your own email address
    - Application name: `Weekly Spotify Recap`
    - Description: `School project that reads my weekly Last.fm listening data`
    - Application homepage: you can use your GitHub repository link
