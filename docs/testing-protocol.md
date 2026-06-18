@@ -34,23 +34,25 @@ The tests focus on the documented project proposal:
 
 | Module | Test file | Main criteria |
 | --- | --- | --- |
-| `main.py` | `tests/test_app_main.py` | Happy path, no-track edge case, network error, SMTP error |
+| `app_logging.py` | `tests/test_app_logging.py` | Log file creation and logging helper messages |
+| `main.py` | `tests/test_main.py` | Entry point call, network error, SMTP error |
 | `config.py` | `tests/test_config.py` | Required env values, missing env error, `.env` parsing |
-| `email_html.py` | `tests/test_email_html.py` | Email sections and playlist button behavior |
-| `enrichment.py` | `tests/test_enrichment.py` | Spotify image/link enrichment |
-| `helpers.py` | `tests/test_helpers.py` | Name matching and listening estimate |
-| `lastfm.py` | `tests/test_lastfm.py` | Last.fm success, API error, weekly filtering |
-| `mailer.py` | `tests/test_mailer.py` | SMTP login and email sending |
-| `playlist.py` | `tests/test_playlist.py` | Playlist update, track URI selection, cover upload |
-| `spotify_auth.py` | `tests/test_spotify_auth.py` | Token caching and missing refresh token |
-| `spotify_api.py` | `tests/test_spotify_api.py` | API error handling and cover upload endpoint |
-| `spotify_lookup.py` | `tests/test_spotify_lookup.py` | Spotify track matching |
-| `summary.py` | `tests/test_summary.py` | Recap counts and empty input edge case |
+| `email_sender.py` | `tests/test_email_sender.py` | SMTP login and email sending |
+| `lastfm_client.py` | `tests/test_lastfm_client.py` | Last.fm success, API error, weekly filtering |
+| `music_helpers.py` | `tests/test_music_helpers.py` | Name matching and listening estimate |
+| `recap_email_builder.py` | `tests/test_recap_email_builder.py` | Email sections and playlist button behavior |
+| `recap_summary.py` | `tests/test_recap_summary.py` | Recap counts and empty input edge case |
+| `recap_workflow.py` | `tests/test_recap_workflow.py` | Happy path and no-track edge case |
+| `spotify_api_client.py` | `tests/test_spotify_api_client.py` | API error handling and cover upload endpoint |
+| `spotify_enrichment.py` | `tests/test_spotify_enrichment.py` | Spotify image/link enrichment |
+| `spotify_playlist.py` | `tests/test_spotify_playlist.py` | Playlist update, track URI selection, cover upload |
+| `spotify_search.py` | `tests/test_spotify_search.py` | Spotify track matching |
+| `spotify_token_manager.py` | `tests/test_spotify_token_manager.py` | Token caching and missing refresh token |
 
 ## Latest Test Result
 
 ```text
-Ran 34 tests
+Ran 37 tests
 
 OK
 ```

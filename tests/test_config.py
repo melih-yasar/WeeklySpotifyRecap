@@ -1,17 +1,48 @@
-import importlib
+﻿import importlib
 import os
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import test_support
+import os
+import sys
+from pathlib import Path
+
+
+SRC = Path(__file__).resolve().parents[1] / "src"
+
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+TEST_ENV = {
+    "LASTFM_API_KEY": "test-lastfm-key",
+    "LASTFM_USERNAME": "test-user",
+    "SPOTIFY_CLIENT_ID": "test-client-id",
+    "SPOTIFY_CLIENT_SECRET": "test-client-secret",
+    "SPOTIFY_REFRESH_TOKEN": "test-refresh-token",
+    "SPOTIFY_PLAYLIST_ID": "test-playlist-id",
+    "SPOTIFY_PLAYLIST_NAME": "Weekly Spotify Recap",
+    "GMAIL_ADDRESS": "sender@example.com",
+    "GMAIL_APP_PASSWORD": "test-app-password",
+    "RECIPIENT_EMAIL": "recipient@example.com",
+    "PLAYLIST_URL": "https://open.spotify.com/playlist/test",
+    "PLAYLIST_COVER_PATH": "assets/playlist-cover.jpg",
+}
+
+for key, value in TEST_ENV.items():
+    os.environ[key] = value
 from weekly_spotify_recap import config
+
+
+def apply_test_env():
+    for key, value in TEST_ENV.items():
+        os.environ[key] = value
 
 
 class ConfigTests(unittest.TestCase):
     def tearDown(self):
-        test_support.apply_test_env()
+        apply_test_env()
 
     def test_required_env_returns_existing_value(self):
         os.environ["SAMPLE_ENV"] = "value"
@@ -35,8 +66,10 @@ class ConfigTests(unittest.TestCase):
 
     def test_config_module_imports_with_test_environment(self):
         reloaded = importlib.reload(config)
-        self.assertEqual(reloaded.LASTFM_API_KEY, test_support.TEST_ENV["LASTFM_API_KEY"])
+        self.assertEqual(reloaded.LASTFM_API_KEY, TEST_ENV["LASTFM_API_KEY"])
 
 
 if __name__ == "__main__":
     unittest.main()
+
+

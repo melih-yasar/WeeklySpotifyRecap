@@ -1,4 +1,4 @@
-"""Create and cache Spotify access tokens."""
+﻿"""Create and cache Spotify access tokens."""
 
 import base64
 
@@ -65,3 +65,4 @@ def basic_auth_headers():
         "Authorization": f"Basic {auth}",
         "Content-Type": "application/x-www-form-urlencoded",
     }
+

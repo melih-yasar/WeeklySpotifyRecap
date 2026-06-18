@@ -1,7 +1,7 @@
-"""Find matching Spotify artists, albums, and tracks."""
+﻿"""Find matching Spotify artists, albums, and tracks."""
 
-from .helpers import exact_name_match, relaxed_album_match
-from .spotify_api import spotify_search
+from .music_helpers import exact_name_match, relaxed_album_match
+from .spotify_api_client import spotify_search
 
 
 def find_spotify_artist(artist_name):
@@ -103,3 +103,4 @@ def first_image(item):
     """Return the first image URL from a Spotify item."""
     images = item.get("images", [])
     return images[0]["url"] if images else None
+

@@ -1,4 +1,4 @@
-"""Build recap statistics from collected listening data."""
+﻿"""Build recap statistics from collected listening data."""
 
 from collections import Counter
 
@@ -59,3 +59,4 @@ def most_common_day(day_counter):
 def favorite_hour(hour_counter):
     """Return the hour with the highest number of plays."""
     return hour_counter.most_common(1)[0][0] if hour_counter else None
+

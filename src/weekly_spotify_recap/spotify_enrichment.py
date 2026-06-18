@@ -1,7 +1,7 @@
 """Add Spotify images and links to the weekly summary."""
 
-from .helpers import find_album_for_track
-from .spotify_lookup import (
+from .music_helpers import find_album_for_track
+from .spotify_search import (
     find_spotify_album,
     find_spotify_artist,
     find_spotify_track,

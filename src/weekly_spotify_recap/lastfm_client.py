@@ -1,4 +1,4 @@
-"""Collect weekly listening data from the Last.fm API."""
+﻿"""Collect weekly listening data from the Last.fm API."""
 
 from datetime import datetime, timedelta, timezone
 
@@ -102,3 +102,4 @@ def get_all_tracks_last_7_days():
         page += 1
 
     return all_tracks
+

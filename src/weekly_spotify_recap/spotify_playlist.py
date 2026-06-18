@@ -4,8 +4,8 @@ import base64
 from pathlib import Path
 
 from .config import PLAYLIST_COVER_PATH, SPOTIFY_PLAYLIST_ID, SPOTIFY_PLAYLIST_NAME
-from .spotify_api import spotify_request, upload_playlist_cover_image
-from .spotify_lookup import find_spotify_track
+from .spotify_api_client import spotify_request, upload_playlist_cover_image
+from .spotify_search import find_spotify_track
 
 
 def create_or_update_weekly_playlist(summary):

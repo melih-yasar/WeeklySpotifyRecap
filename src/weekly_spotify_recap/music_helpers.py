@@ -1,4 +1,4 @@
-"""Small helper functions used by multiple project modules."""
+﻿"""Small helper functions used by multiple project modules."""
 
 
 def normalize_name(value: str) -> str:
@@ -50,3 +50,4 @@ def find_album_for_track(summary, artist, title):
             return track["album"]
 
     return "Unknown Album"
+

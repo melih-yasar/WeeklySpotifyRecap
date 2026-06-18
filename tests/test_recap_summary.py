@@ -1,11 +1,37 @@
-from datetime import datetime, timezone
+﻿from datetime import datetime, timezone
 import unittest
 
-import test_support  # noqa: F401
-from weekly_spotify_recap.summary import build_summary
+import os
+import sys
+from pathlib import Path
 
 
-class SummaryTests(unittest.TestCase):
+SRC = Path(__file__).resolve().parents[1] / "src"
+
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+TEST_ENV = {
+    "LASTFM_API_KEY": "test-lastfm-key",
+    "LASTFM_USERNAME": "test-user",
+    "SPOTIFY_CLIENT_ID": "test-client-id",
+    "SPOTIFY_CLIENT_SECRET": "test-client-secret",
+    "SPOTIFY_REFRESH_TOKEN": "test-refresh-token",
+    "SPOTIFY_PLAYLIST_ID": "test-playlist-id",
+    "SPOTIFY_PLAYLIST_NAME": "Weekly Spotify Recap",
+    "GMAIL_ADDRESS": "sender@example.com",
+    "GMAIL_APP_PASSWORD": "test-app-password",
+    "RECIPIENT_EMAIL": "recipient@example.com",
+    "PLAYLIST_URL": "https://open.spotify.com/playlist/test",
+    "PLAYLIST_COVER_PATH": "assets/playlist-cover.jpg",
+}
+
+for key, value in TEST_ENV.items():
+    os.environ[key] = value
+from weekly_spotify_recap.recap_summary import build_summary
+
+
+class RecapSummaryTests(unittest.TestCase):
     def test_build_summary_counts_weekly_statistics(self):
         played_at = datetime(2026, 6, 1, 9, tzinfo=timezone.utc)
         tracks = [
@@ -32,3 +58,5 @@ class SummaryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+

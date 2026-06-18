@@ -1,4 +1,4 @@
-import base64
+﻿import base64
 import os
 import secrets
 import urllib.parse
@@ -96,3 +96,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

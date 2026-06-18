@@ -3,7 +3,7 @@
 import requests
 
 from .config import SPOTIFY_API_BASE
-from .spotify_auth import get_spotify_app_token, get_spotify_user_token
+from .spotify_token_manager import get_spotify_app_token, get_spotify_user_token
 
 
 def spotify_get(path, params=None):

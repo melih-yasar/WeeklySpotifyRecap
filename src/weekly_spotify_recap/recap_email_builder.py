@@ -1,7 +1,7 @@
-"""Build the Spotify-style HTML email."""
+﻿"""Build the Spotify-style HTML email."""
 
 from .config import PLAYLIST_URL
-from .helpers import estimate_listening_hours
+from .music_helpers import estimate_listening_hours
 
 
 def build_top_artist_cards(enriched):
@@ -356,3 +356,4 @@ def track_or_album_row(index, image_html, title_html, artist, plays):
         <td style="padding:14px 0;text-align:right;color:#1ed760;font-size:15px;font-weight:700;">{plays}</td>
     </tr>
     """
+

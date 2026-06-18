@@ -1,4 +1,4 @@
-"""Load environment variables and shared configuration values."""
+﻿"""Load environment variables and shared configuration values."""
 
 import os
 from pathlib import Path
@@ -63,3 +63,4 @@ LASTFM_HEADERS = {"User-Agent": "M122E-WeeklyRecap/1.0"}
 
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SPOTIFY_API_BASE = "https://api.spotify.com/v1"
+

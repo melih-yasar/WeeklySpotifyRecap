@@ -1,14 +1,14 @@
+﻿import unittest
+
 import os
 import sys
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "src"
+SRC = Path(__file__).resolve().parents[1] / "src"
 
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
-
 
 TEST_ENV = {
     "LASTFM_API_KEY": "test-lastfm-key",
@@ -25,16 +25,12 @@ TEST_ENV = {
     "PLAYLIST_COVER_PATH": "assets/playlist-cover.jpg",
 }
 
-
-def apply_test_env():
-    for key, value in TEST_ENV.items():
-        os.environ[key] = value
-
-
-apply_test_env()
+for key, value in TEST_ENV.items():
+    os.environ[key] = value
+from weekly_spotify_recap.recap_email_builder import build_html_email
 
 
-def sample_summary():
+def sample_recap_summary():
     return {
         "total_scrobbles": 4,
         "top_artists": [("Artist A", 3), ("Artist B", 1)],
@@ -42,15 +38,8 @@ def sample_summary():
         "top_albums": [(("Artist A", "Album A"), 3)],
         "busiest_day": ("Monday", 4),
         "favorite_hour": 9,
-        "latest_track": {
-            "artist": "Artist A",
-            "title": "Song A",
-            "album": "Album A",
-        },
-        "raw_tracks": [
-            {"artist": "Artist A", "title": "Song A", "album": "Album A"},
-            {"artist": "Artist B", "title": "Song B", "album": "Album B"},
-        ],
+        "latest_track": {"artist": "Artist A", "title": "Song A", "album": "Album A"},
+        "raw_tracks": [{"artist": "Artist A", "title": "Song A", "album": "Album A"}],
     }
 
 
@@ -85,3 +74,34 @@ def sample_enriched():
             "spotify_url": "https://open.spotify.com/album/test",
         }],
     }
+
+
+class EmailHtmlTests(unittest.TestCase):
+    def test_build_html_email_contains_main_sections(self):
+        html = build_html_email(
+            sample_recap_summary(),
+            sample_enriched(),
+            playlist_url="https://open.spotify.com/playlist/test",
+        )
+
+        self.assertIn("Weekly listening recap", html)
+        self.assertIn("Top artists", html)
+        self.assertIn("Top tracks", html)
+        self.assertIn("Top albums", html)
+        self.assertIn("https://open.spotify.com/playlist/test", html)
+
+    def test_build_html_email_hides_playlist_button_without_url(self):
+        with unittest.mock.patch("weekly_spotify_recap.recap_email_builder.PLAYLIST_URL", ""):
+            html = build_html_email(
+                sample_recap_summary(),
+                sample_enriched(),
+                playlist_url="",
+            )
+
+        self.assertNotIn("Open your weekly playlist", html)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
