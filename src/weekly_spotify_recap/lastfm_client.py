@@ -95,11 +95,8 @@ def get_all_tracks_last_7_days():
 
         if not tracks or not add_recent_tracks(tracks, all_tracks, week_ago):
             break
-
         if page >= total_pages(data):
             break
-
         page += 1
-
     return all_tracks
 
