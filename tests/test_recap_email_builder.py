@@ -90,6 +90,15 @@ class EmailHtmlTests(unittest.TestCase):
         self.assertIn("Top albums", html)
         self.assertIn("https://open.spotify.com/playlist/test", html)
 
+    def test_build_html_email_contains_mobile_row_styles(self):
+        html = build_html_email(sample_recap_summary(), sample_enriched())
+
+        self.assertIn('name="viewport"', html)
+        self.assertIn("@media only screen and (max-width: 600px)", html)
+        self.assertIn('class="media-plays"', html)
+        self.assertIn('class="plays-label"', html)
+        self.assertIn("3<span", html)
+
     def test_build_html_email_hides_playlist_button_without_url(self):
         with unittest.mock.patch("weekly_spotify_recap.recap_email_builder.PLAYLIST_URL", ""):
             html = build_html_email(

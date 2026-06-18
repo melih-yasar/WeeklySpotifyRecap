@@ -89,12 +89,63 @@ def email_page(content):
     """Wrap all email sections in the main HTML page layout."""
     return f"""
     <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            @media only screen and (max-width: 600px) {{
+                .email-shell {{
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    border-radius: 0 !important;
+                }}
+                .section-padding {{
+                    padding-left: 18px !important;
+                    padding-right: 18px !important;
+                }}
+                .media-index {{
+                    width: 24px !important;
+                    font-size: 12px !important;
+                }}
+                .media-cover-cell {{
+                    width: 58px !important;
+                    padding-right: 10px !important;
+                }}
+                .media-cover,
+                .media-cover-placeholder {{
+                    width: 50px !important;
+                    height: 50px !important;
+                    border-radius: 10px !important;
+                }}
+                .media-title {{
+                    font-size: 15px !important;
+                    overflow-wrap: anywhere !important;
+                    word-break: break-word !important;
+                }}
+                .media-artist {{
+                    font-size: 13px !important;
+                    overflow-wrap: anywhere !important;
+                    word-break: break-word !important;
+                }}
+                .media-plays {{
+                    width: 54px !important;
+                    min-width: 54px !important;
+                    font-size: 13px !important;
+                    white-space: normal !important;
+                    line-height: 1.2 !important;
+                }}
+                .plays-label {{
+                    display: block !important;
+                    font-size: 11px !important;
+                }}
+            }}
+        </style>
+    </head>
     <body style="margin:0;padding:0;background:#0b0b0b;font-family:Arial,Helvetica,sans-serif;">
         <div style="background:#0b0b0b;padding:26px 12px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                     <td align="center">
-                        <table role="presentation" width="760" cellspacing="0" cellpadding="0" border="0" style="width:760px;max-width:760px;background:#111111;border-radius:30px;overflow:hidden;">
+                        <table class="email-shell" role="presentation" width="760" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:760px;background:#111111;border-radius:30px;overflow:hidden;">
                             {content}
                         </table>
                     </td>
@@ -110,7 +161,7 @@ def hero_section(data):
     """Build the green hero section at the top of the email."""
     return f"""
     <tr>
-        <td style="padding:34px;">
+        <td class="section-padding" style="padding:34px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:linear-gradient(180deg,#1db954 0%,#138241 35%,#111111 100%);border-radius:26px;">
                 <tr>
                     <td style="padding:34px;">
@@ -177,7 +228,7 @@ def stats_section(data):
     """Build the three stat cards below the hero section."""
     return f"""
     <tr>
-        <td style="padding:0 34px 8px 34px;">
+        <td class="section-padding" style="padding:0 34px 8px 34px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                     {stat_card("Total plays", data["summary"]["total_scrobbles"])}
@@ -207,7 +258,7 @@ def highlights_section(data):
     summary = data["summary"]
     return f"""
     <tr>
-        <td style="padding:12px 34px 0 34px;">
+        <td class="section-padding" style="padding:12px 34px 0 34px;">
             <div style="background:#181818;border-radius:24px;padding:26px;">
                 <div style="font-size:12px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1.2px;">Highlights</div>
                 <div style="font-size:18px;line-height:1.8;color:#f1f1f1;margin-top:14px;">
@@ -241,7 +292,7 @@ def section_with_table(title, rows):
     """Build a normal section containing a table."""
     return f"""
     <tr>
-        <td style="padding:28px 34px 0 34px;">
+        <td class="section-padding" style="padding:28px 34px 0 34px;">
             <div style="font-size:13px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1.4px;">
                 {title}
             </div>
@@ -258,7 +309,7 @@ def dark_table_section(title, rows, last=False):
     padding = "28px 34px 34px 34px" if last else "28px 34px 0 34px"
     return f"""
     <tr>
-        <td style="padding:{padding};">
+        <td class="section-padding" style="padding:{padding};">
             <div style="font-size:13px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1.4px;">
                 {title}
             </div>
@@ -330,9 +381,9 @@ def artist_image(item):
 def cover_image(url, alt):
     """Build an album cover image or a placeholder."""
     if url:
-        return f'<img src="{url}" alt="{alt}" style="width:64px;height:64px;border-radius:12px;object-fit:cover;display:block;">'
+        return f'<img class="media-cover" src="{url}" alt="{alt}" style="width:64px;height:64px;border-radius:12px;object-fit:cover;display:block;">'
 
-    return '<div style="width:64px;height:64px;border-radius:12px;background:#2a2a2a;display:block;"></div>'
+    return '<div class="media-cover-placeholder" style="width:64px;height:64px;border-radius:12px;background:#2a2a2a;display:block;"></div>'
 
 
 def linked_text(text, url):
@@ -347,13 +398,13 @@ def track_or_album_row(index, image_html, title_html, artist, plays):
     """Build one reusable track or album table row."""
     return f"""
     <tr>
-        <td style="padding:14px 0;color:#8f8f8f;font-size:14px;width:34px;">{index}</td>
-        <td style="padding:14px 0;width:80px;">{image_html}</td>
+        <td class="media-index" style="padding:14px 0;color:#8f8f8f;font-size:14px;width:34px;">{index}</td>
+        <td class="media-cover-cell" style="padding:14px 12px 14px 0;width:80px;">{image_html}</td>
         <td style="padding:14px 0;">
-            <div style="font-size:17px;color:#ffffff;font-weight:700;line-height:1.35;">{title_html}</div>
-            <div style="font-size:14px;color:#b3b3b3;margin-top:5px;">{artist}</div>
+            <div class="media-title" style="font-size:17px;color:#ffffff;font-weight:700;line-height:1.35;overflow-wrap:anywhere;word-break:break-word;">{title_html}</div>
+            <div class="media-artist" style="font-size:14px;color:#b3b3b3;margin-top:5px;overflow-wrap:anywhere;word-break:break-word;">{artist}</div>
         </td>
-        <td style="padding:14px 0;text-align:right;color:#1ed760;font-size:15px;font-weight:700;">{plays}</td>
+        <td class="media-plays" style="padding:14px 0 14px 10px;text-align:right;color:#1ed760;font-size:15px;font-weight:700;width:68px;min-width:68px;white-space:nowrap;">{plays}<span class="plays-label"> plays</span></td>
     </tr>
     """
 
