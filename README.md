@@ -99,6 +99,27 @@ py -m unittest discover -s tests
 
 The tests use mocks, so they do not call Last.fm, Spotify, or Gmail.
 
+## Documentation
+
+The project documentation is split into separate files:
+
+| Document | Purpose |
+| --- | --- |
+| [`docs/setup.md`](docs/setup.md) | Detailed setup guide for Last.fm, Spotify, Gmail, and local execution. |
+| [`docs/testing-protocol.md`](docs/testing-protocol.md) | Test setup, tested requirements, test cases, and latest result. |
+| [`documents/M122E_ProjectPlan_MelihYasar.pdf`](documents/M122E_ProjectPlan_MelihYasar.pdf) | Approved project plan and timeline. |
+| [`documents/M122E_ProjectProposal_Melih.pdf`](documents/M122E_ProjectProposal_Melih.pdf) | Approved project proposal and prioritized requirements. |
+| [`documents/component-and-deployment-diagram.png`](documents/component-and-deployment-diagram.png) | Component and deployment diagram. |
+| [`documents/detailed-activity-diagram.png`](documents/detailed-activity-diagram.png) | Detailed activity diagram of the script flow. |
+
+## Scope Notes
+
+Saving past weekly recaps for later comparison was listed as a Could requirement
+in the project proposal. It was not implemented in the final version because the
+main goal was to generate the current weekly recap, create/update the playlist,
+and send the email automatically. Comparison would require persistent storage,
+which was outside the final project scope.
+
 ## Main Files
 
 | File | Purpose |
