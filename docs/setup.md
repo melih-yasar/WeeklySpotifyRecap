@@ -33,13 +33,24 @@ pip install -r requirements.txt
 1. Go to the official Last.fm API page: <https://www.last.fm/api>
 2. Log in with your Last.fm account.
 3. Click **Get an API account**.
+
+![Last.fm Get an API account button](screenshots/lastfm-get-api-account.png)
+
 4. Fill in the application form.
    - Application name: `Weekly Spotify Recap`
    - Description: `School project that reads my weekly Last.fm listening data`
    - Application homepage: you can use your GitHub repository link
    - Callback URL: leave it empty for this project
+
+![Last.fm API account form](screenshots/lastfm-api-account-form.png)
+
+The screenshot shows example form fields. For this project, the callback URL can
+be left empty because the script only needs the Last.fm API key.
+
 5. After creating the API account, copy the **API Key**.
 6. Put it into `.env` as `LASTFM_API_KEY`.
+
+![Last.fm API account created](screenshots/lastfm-api-account-created.png)
 
 You also need your Last.fm username. Put that into `.env` as
 `LASTFM_USERNAME`.
@@ -49,24 +60,40 @@ receive your Spotify listening history, and the recap can be empty. Open
 <https://www.last.fm/about/trackmymusic>, choose Spotify, and connect your
 Spotify account.
 
+![Connect Spotify to Last.fm](screenshots/lastfm-connect-spotify.png)
+
 ## 4. Create a Spotify Developer app
 
 1. Go to the official Spotify Developer Dashboard:
    <https://developer.spotify.com/dashboard>
 2. Log in with your Spotify account.
 3. Click **Create app**.
+
+![Spotify Developer Dashboard create app button](screenshots/spotify-dashboard-create-app.png)
+
 4. Fill in the app form.
    - App name: `Weekly Spotify Recap`
    - App description: `School project that creates a weekly Spotify playlist`
    - Website: you can use your GitHub repository link
    - Redirect URI: `http://127.0.0.1:8888/callback`
    - API/SDK: select **Web API**
+
+![Spotify create app form](screenshots/spotify-create-app-form.png)
+
 5. Save the app.
 6. Open the app settings and copy:
    - **Client ID**
    - **Client Secret**
+
+![Spotify app client ID and client secret](screenshots/spotify-app-credentials.png)
+
 7. Put them into `.env` as `SPOTIFY_CLIENT_ID` and
    `SPOTIFY_CLIENT_SECRET`.
+
+If the app is in development mode, open **User Management** and add the Spotify
+account that should authorize the app.
+
+![Spotify app user management](screenshots/spotify-user-management.png)
 
 Important: the redirect URI in Spotify must be exactly
 `http://127.0.0.1:8888/callback`, because the refresh-token script uses that
