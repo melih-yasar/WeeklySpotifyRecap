@@ -8,6 +8,7 @@ Official setup links:
 | --- | --- |
 | Python | [Python downloads](https://www.python.org/downloads/) |
 | Last.fm API | [Last.fm API](https://www.last.fm/api) |
+| Last.fm Spotify scrobbling | [Track My Music](https://www.last.fm/about/trackmymusic) |
 | Spotify Developer Dashboard | [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) |
 | Spotify authorization code flow | [Authorization code flow](https://developer.spotify.com/documentation/web-api/tutorials/code-flow) |
 | Spotify scopes | [Spotify scopes](https://developer.spotify.com/documentation/web-api/concepts/scopes) |
@@ -42,6 +43,11 @@ pip install -r requirements.txt
 
 You also need your Last.fm username. Put that into `.env` as
 `LASTFM_USERNAME`.
+
+Before running the app, connect Spotify to Last.fm. Otherwise Last.fm may not
+receive your Spotify listening history, and the recap can be empty. Open
+<https://www.last.fm/about/trackmymusic>, choose Spotify, and connect your
+Spotify account.
 
 ## 4. Create a Spotify Developer app
 
