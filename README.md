@@ -105,12 +105,12 @@ The project documentation is split into separate files:
 
 | Document | Purpose |
 | --- | --- |
-| [`docs/setup.md`](docs/setup.md) | Detailed setup guide for Last.fm, Spotify, Gmail, and local execution. |
-| [`docs/testing-protocol.md`](docs/testing-protocol.md) | Test setup, tested requirements, test cases, and latest result. |
-| [`documents/M122E_ProjectPlan_MelihYasar.pdf`](documents/M122E_ProjectPlan_MelihYasar.pdf) | Approved project plan and timeline. |
-| [`documents/M122E_ProjectProposal_Melih.pdf`](documents/M122E_ProjectProposal_Melih.pdf) | Approved project proposal and prioritized requirements. |
-| [`documents/component-and-deployment-diagram.png`](documents/component-and-deployment-diagram.png) | Component and deployment diagram. |
-| [`documents/detailed-activity-diagram.png`](documents/detailed-activity-diagram.png) | Detailed activity diagram of the script flow. |
+| [Setup Guide](docs/setup.md) | Detailed setup guide for Last.fm, Spotify, Gmail, and local execution. |
+| [Testing Protocol](docs/testing-protocol.md) | Test setup, tested requirements, test cases, and latest result. |
+| [Project Plan](documents/M122E_ProjectPlan_MelihYasar.pdf) | Approved project plan and timeline. |
+| [Project Proposal](documents/M122E_ProjectProposal_Melih.pdf) | Approved project proposal and prioritized requirements. |
+| [Component and Deployment Diagram](documents/component-and-deployment-diagram.png) | Component and deployment diagram. |
+| [Detailed Activity Diagram](documents/detailed-activity-diagram.png) | Detailed activity diagram of the script flow. |
 
 ## Scope Notes
 
