@@ -85,9 +85,10 @@ class EmailHtmlTests(unittest.TestCase):
         )
 
         self.assertIn("Weekly listening recap", html)
-        self.assertIn("Top artists", html)
-        self.assertIn("Top tracks", html)
-        self.assertIn("Top albums", html)
+        self.assertIn("Spotify Recap", html)
+        self.assertIn("Your top artists", html)
+        self.assertIn("Your top tracks", html)
+        self.assertIn("Your top albums", html)
         self.assertIn("https://open.spotify.com/playlist/test", html)
 
     def test_build_html_email_contains_mobile_row_styles(self):
@@ -95,9 +96,17 @@ class EmailHtmlTests(unittest.TestCase):
 
         self.assertIn('name="viewport"', html)
         self.assertIn("@media only screen and (max-width: 600px)", html)
-        self.assertIn('class="media-plays"', html)
-        self.assertIn('class="plays-label"', html)
-        self.assertIn("3<span", html)
+        self.assertIn('class="media-title"', html)
+        self.assertIn('class="media-artist"', html)
+
+    def test_build_html_email_shows_counts_without_play_label(self):
+        html = build_html_email(sample_recap_summary(), sample_enriched())
+
+        self.assertNotIn('class="media-plays"', html)
+        self.assertNotIn('class="plays-label"', html)
+        self.assertNotIn("Total plays", html)
+        self.assertNotIn("3 plays", html)
+        self.assertIn('class="media-count"', html)
 
     def test_build_html_email_hides_playlist_button_without_url(self):
         with unittest.mock.patch("weekly_spotify_recap.recap_email_builder.PLAYLIST_URL", ""):
@@ -107,7 +116,7 @@ class EmailHtmlTests(unittest.TestCase):
                 playlist_url="",
             )
 
-        self.assertNotIn("Open your weekly playlist", html)
+        self.assertNotIn("Open playlist on Spotify", html)
 
 
 if __name__ == "__main__":

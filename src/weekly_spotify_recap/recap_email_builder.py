@@ -13,12 +13,12 @@ def build_top_artist_cards(enriched):
         name_html = linked_text(item["artist"], item["spotify_url"])
 
         cards.append(f"""
-        <td style="width:33.33%;padding:8px;vertical-align:top;">
-            <div style="background:#181818;border-radius:20px;padding:18px;text-align:center;min-height:190px;">
+        <td class="artist-card-cell" style="width:33.33%;padding:8px;vertical-align:top;">
+            <div style="background:#181818;border:1px solid #282828;border-radius:18px;padding:18px;text-align:center;min-height:190px;">
                 {image_html}
-                <div style="font-size:11px;color:#9f9f9f;letter-spacing:1px;text-transform:uppercase;">Top Artist #{index}</div>
-                <div style="font-size:20px;color:#ffffff;font-weight:700;line-height:1.3;margin-top:8px;">{name_html}</div>
-                <div style="font-size:15px;color:#1ed760;margin-top:8px;font-weight:700;">{item["plays"]} plays</div>
+                <div style="font-size:11px;color:#1ed760;text-transform:uppercase;font-weight:800;">#{index} Artist</div>
+                <div style="font-size:20px;color:#ffffff;font-weight:800;line-height:1.3;margin-top:8px;">{name_html}</div>
+                <div style="font-size:15px;color:#1ed760;margin-top:8px;font-weight:700;">{item["plays"]}</div>
             </div>
         </td>
         """)
@@ -57,6 +57,7 @@ def build_html_email(summary, enriched, playlist_url=None):
     data = email_data(summary, enriched, playlist_url)
 
     return email_page(f"""
+        {brand_header()}
         {hero_section(data)}
         {stats_section(data)}
         {highlights_section(data)}
@@ -102,6 +103,28 @@ def email_page(content):
                     padding-left: 18px !important;
                     padding-right: 18px !important;
                 }}
+                .brand-cell {{
+                    padding: 20px 18px 8px 18px !important;
+                }}
+                .hero-inner {{
+                    padding: 24px !important;
+                }}
+                .hero-column {{
+                    display: block !important;
+                    width: 100% !important;
+                    padding-right: 0 !important;
+                }}
+                .hero-title {{
+                    font-size: 44px !important;
+                }}
+                .hero-card-cell {{
+                    padding-top: 24px !important;
+                }}
+                .artist-card-cell {{
+                    display: block !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                }}
                 .media-index {{
                     width: 24px !important;
                     font-size: 12px !important;
@@ -126,16 +149,10 @@ def email_page(content):
                     overflow-wrap: anywhere !important;
                     word-break: break-word !important;
                 }}
-                .media-plays {{
-                    width: 54px !important;
-                    min-width: 54px !important;
+                .media-count {{
+                    width: 44px !important;
+                    min-width: 44px !important;
                     font-size: 13px !important;
-                    white-space: normal !important;
-                    line-height: 1.2 !important;
-                }}
-                .plays-label {{
-                    display: block !important;
-                    font-size: 11px !important;
                 }}
             }}
         </style>
@@ -157,14 +174,37 @@ def email_page(content):
     """
 
 
+def brand_header():
+    """Build the top brand bar."""
+    return """
+    <tr>
+        <td class="brand-cell" style="padding:26px 34px 4px 34px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td style="vertical-align:middle;">
+                        <div style="font-size:15px;color:#ffffff;font-weight:900;line-height:1;">
+                            <span style="display:inline-block;width:14px;height:14px;background:#1ed760;border-radius:50%;vertical-align:-2px;margin-right:8px;"></span>
+                            Spotify Recap
+                        </div>
+                    </td>
+                    <td align="right" style="vertical-align:middle;font-size:11px;color:#a7a7a7;text-transform:uppercase;font-weight:700;">
+                        Last 7 days
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    """
+
+
 def hero_section(data):
     """Build the green hero section at the top of the email."""
     return f"""
     <tr>
-        <td class="section-padding" style="padding:34px;">
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:linear-gradient(180deg,#1db954 0%,#138241 35%,#111111 100%);border-radius:26px;">
+        <td class="section-padding" style="padding:18px 34px 26px 34px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#1ed760;border-radius:28px;">
                 <tr>
-                    <td style="padding:34px;">
+                    <td class="hero-inner" style="padding:34px;background:linear-gradient(160deg,#1ed760 0%,#0f6f35 45%,#121212 100%);border-radius:28px;">
                         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                             <tr>
                                 {hero_copy(data)}
@@ -182,17 +222,17 @@ def hero_section(data):
 def hero_copy(data):
     """Build the left side of the hero section."""
     return f"""
-    <td width="56%" valign="top" style="padding-right:18px;">
-        <div style="font-size:12px;color:#d9ffe4;letter-spacing:2px;text-transform:uppercase;font-weight:700;">
+    <td class="hero-column" width="56%" valign="top" style="padding-right:18px;">
+        <div style="font-size:12px;color:#d9ffe4;text-transform:uppercase;font-weight:900;">
             Weekly listening recap
         </div>
-        <div style="font-size:58px;line-height:0.95;font-weight:900;color:#ffffff;margin-top:18px;">
-            Your<br>week<br>in music
+        <div class="hero-title" style="font-size:56px;line-height:0.95;font-weight:900;color:#ffffff;margin-top:16px;">
+            Your week<br>sounded<br>like this
         </div>
-        <div style="font-size:18px;line-height:1.7;color:#ebfff2;margin-top:22px;max-width:360px;">
-            Heavy rotation, repeat favorites, and the albums and tracks that defined your last 7 days.
+        <div style="font-size:17px;line-height:1.65;color:#ebfff2;margin-top:22px;max-width:360px;">
+            A fresh recap of your top songs, artists, albums, and listening habits from the last 7 days.
         </div>
-        <div style="margin-top:24px;background:rgba(0,0,0,0.18);border-radius:18px;padding:18px 20px;display:inline-block;">
+        <div style="margin-top:24px;background:#121212;border-radius:18px;padding:18px 20px;display:inline-block;">
             <div style="font-size:12px;color:#dfffea;text-transform:uppercase;letter-spacing:1px;">Most replayed track</div>
             <div style="font-size:24px;color:#ffffff;font-weight:800;line-height:1.25;margin-top:8px;">{data["top_track"]}</div>
             <div style="font-size:14px;color:#dfffea;margin-top:6px;">by {data["top_track_artist"]}</div>
@@ -205,15 +245,15 @@ def hero_copy(data):
 def hero_card(hero):
     """Build the latest-listen card in the hero section."""
     return f"""
-    <td width="44%" valign="middle" align="center">
-        <div style="background:rgba(0,0,0,0.12);border-radius:28px;padding:24px;text-align:center;">
+    <td class="hero-column hero-card-cell" width="44%" valign="middle" align="center">
+        <div style="background:#121212;border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:22px;text-align:center;">
             <div style="width:180px;margin:0 auto;">
                 {hero_image(hero)}
             </div>
-            <div style="font-size:12px;color:#dfffea;letter-spacing:1px;text-transform:uppercase;margin-top:14px;">
+            <div style="font-size:11px;color:#1ed760;text-transform:uppercase;font-weight:900;margin-top:14px;">
                 Latest listen
             </div>
-            <div style="font-size:17px;color:#ffffff;font-weight:700;line-height:1.35;margin-top:6px;">
+            <div style="font-size:18px;color:#ffffff;font-weight:800;line-height:1.35;margin-top:6px;">
                 {hero.get("title", "")}
             </div>
             <div style="font-size:13px;color:#dfffea;line-height:1.4;margin-top:4px;">
@@ -231,7 +271,7 @@ def stats_section(data):
         <td class="section-padding" style="padding:0 34px 8px 34px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
-                    {stat_card("Total plays", data["summary"]["total_scrobbles"])}
+                    {stat_card("Total listens", data["summary"]["total_scrobbles"])}
                     {stat_card("Listening time", f'{data["listening_hours"]}h')}
                     {stat_card("Peak time", data["favorite_hour"])}
                 </tr>
@@ -245,7 +285,7 @@ def stat_card(label, value):
     """Build one small stat card."""
     return f"""
     <td width="33.33%" style="padding:8px;">
-        <div style="background:#181818;border-radius:20px;padding:20px;">
+        <div style="background:#181818;border-top:4px solid #1ed760;border-radius:18px;padding:18px 20px;">
             <div style="font-size:12px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1px;">{label}</div>
             <div style="font-size:28px;color:#ffffff;font-weight:900;margin-top:8px;">{value}</div>
         </div>
@@ -259,13 +299,13 @@ def highlights_section(data):
     return f"""
     <tr>
         <td class="section-padding" style="padding:12px 34px 0 34px;">
-            <div style="background:#181818;border-radius:24px;padding:26px;">
-                <div style="font-size:12px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1.2px;">Highlights</div>
+            <div style="background:#181818;border:1px solid #282828;border-radius:24px;padding:26px;">
+                <div style="font-size:12px;color:#1ed760;text-transform:uppercase;font-weight:900;">Made for your week</div>
                 <div style="font-size:18px;line-height:1.8;color:#f1f1f1;margin-top:14px;">
-                    You played <span style="color:#1ed760;font-weight:800;">{summary["total_scrobbles"]}</span> tracks this week.
+                    You listened to <span style="color:#1ed760;font-weight:800;">{summary["total_scrobbles"]}</span> tracks this week.
                     Your soundtrack was led by <span style="color:#ffffff;font-weight:800;">{data["top_artist"]}</span>.
                     Your biggest listening day was <span style="color:#ffffff;font-weight:800;">{data["busiest_day"]}</span> with
-                    <span style="color:#1ed760;font-weight:800;">{data["busiest_day_plays"]} plays</span>.
+                    <span style="color:#1ed760;font-weight:800;">{data["busiest_day_plays"]} tracks</span>.
                 </div>
             </div>
         </td>
@@ -275,17 +315,17 @@ def highlights_section(data):
 
 def artists_section(enriched):
     """Build the top artists section."""
-    return section_with_table("Top artists", f"<tr>{build_top_artist_cards(enriched)}</tr>")
+    return section_with_table("Your top artists", f"<tr>{build_top_artist_cards(enriched)}</tr>")
 
 
 def tracks_section(enriched):
     """Build the top tracks section."""
-    return dark_table_section("Top tracks", build_top_track_rows(enriched))
+    return dark_table_section("Your top tracks", build_top_track_rows(enriched))
 
 
 def albums_section(enriched):
     """Build the top albums section."""
-    return dark_table_section("Top albums", build_top_album_rows(enriched), last=True)
+    return dark_table_section("Your top albums", build_top_album_rows(enriched), last=True)
 
 
 def section_with_table(title, rows):
@@ -293,7 +333,7 @@ def section_with_table(title, rows):
     return f"""
     <tr>
         <td class="section-padding" style="padding:28px 34px 0 34px;">
-            <div style="font-size:13px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1.4px;">
+            <div style="font-size:13px;color:#ffffff;text-transform:uppercase;font-weight:900;">
                 {title}
             </div>
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top:10px;">
@@ -310,10 +350,10 @@ def dark_table_section(title, rows, last=False):
     return f"""
     <tr>
         <td class="section-padding" style="padding:{padding};">
-            <div style="font-size:13px;color:#9d9d9d;text-transform:uppercase;letter-spacing:1.4px;">
+            <div style="font-size:13px;color:#ffffff;text-transform:uppercase;font-weight:900;">
                 {title}
             </div>
-            <div style="background:#181818;border-radius:24px;padding:22px;margin-top:12px;">
+            <div style="background:#181818;border:1px solid #282828;border-radius:24px;padding:22px;margin-top:12px;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                     {rows}
                 </table>
@@ -361,7 +401,7 @@ def playlist_button(link):
             padding:14px 22px;
             border-radius:999px;
             font-size:15px;">
-            Open your weekly playlist
+            Open playlist on Spotify
         </a>
     </div>
     '''
@@ -394,7 +434,7 @@ def linked_text(text, url):
     return text
 
 
-def track_or_album_row(index, image_html, title_html, artist, plays):
+def track_or_album_row(index, image_html, title_html, artist, count):
     """Build one reusable track or album table row."""
     return f"""
     <tr>
@@ -404,7 +444,7 @@ def track_or_album_row(index, image_html, title_html, artist, plays):
             <div class="media-title" style="font-size:17px;color:#ffffff;font-weight:700;line-height:1.35;overflow-wrap:anywhere;word-break:break-word;">{title_html}</div>
             <div class="media-artist" style="font-size:14px;color:#b3b3b3;margin-top:5px;overflow-wrap:anywhere;word-break:break-word;">{artist}</div>
         </td>
-        <td class="media-plays" style="padding:14px 0 14px 10px;text-align:right;color:#1ed760;font-size:15px;font-weight:700;width:68px;min-width:68px;white-space:nowrap;">{plays}<span class="plays-label"> plays</span></td>
+        <td class="media-count" style="padding:14px 0 14px 10px;text-align:right;color:#1ed760;font-size:15px;font-weight:700;width:52px;min-width:52px;white-space:nowrap;">{count}</td>
     </tr>
     """
 
