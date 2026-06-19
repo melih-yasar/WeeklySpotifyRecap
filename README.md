@@ -55,7 +55,7 @@ Done.
 ## Tests
 
 ```powershell
-py -m unittest discover -s tests
+py -m unittest discover -p "test_*.py"
 ```
 
 The tests use mocks, so they do not call Last.fm, Spotify, or Gmail.
