@@ -1,6 +1,6 @@
 # Testing Protocol
 
-Date: 03.06.2026
+Date: 19.06.2026
 
 Project: Weekly Spotify Recap
 
@@ -8,12 +8,21 @@ Testing type: White-box unit testing with Python `unittest`
 
 ## Test Setup
 
-Run all tests with:
+The tests can be run with a command or with the Visual Studio Code testing
+extension.
+
+Command:
 
 ```powershell
 $env:PYTHONPATH="src"
 py -m unittest discover -p "test_*.py" -v
 ```
+
+Testing extension:
+
+Open the Testing view in Visual Studio Code and run the discovered `unittest`
+tests from there. The workspace settings are configured for the root-level
+`test_*.py` files.
 
 The tests use fake environment variables and mocks. They do not call Last.fm,
 Spotify, or Gmail.
