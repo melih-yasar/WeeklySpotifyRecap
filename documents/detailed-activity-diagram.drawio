@@ -1,74 +1,164 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="Detailed Activity Diagram">
-    <mxGraphModel dx="1100" dy="1350" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1350" math="0" shadow="0">
+  <diagram name="Spotify Recap - Activity Diagram Clean" id="0">
+    <mxGraphModel dx="1548" dy="926" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="2200" background="#111111" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-        <mxCell id="start" value="Start weekly recap script" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5f5c4;strokeColor=#6aa84f;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="425" y="30" width="230" height="60" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#F2F2F2;fontStyle=1;fontSize=24;align=left;" value="Detailed UML Activity Diagram" vertex="1">
+          <mxGeometry height="30" width="430" x="70" y="28" as="geometry" />
         </mxCell>
-        <mxCell id="env" value="Load .env configuration and validate required variables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="125" width="320" height="70" as="geometry"/>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#A8A8A8;fontSize=14;align=left;" value="Weekly Spotify Recap" vertex="1">
+          <mxGeometry height="20" width="220" x="70" y="56" as="geometry" />
         </mxCell>
-        <mxCell id="lastfm" value="Fetch recent tracks from Last.fm API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="230" width="320" height="70" as="geometry"/>
+        <mxCell id="start" parent="1" style="ellipse;html=1;fillColor=#F2F2F2;strokeColor=#F2F2F2;" value="" vertex="1">
+          <mxGeometry height="18" width="18" x="411" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="filter" value="Filter tracks to last 7 days" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="335" width="320" height="70" as="geometry"/>
+        <mxCell id="run" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Run weekly recap script" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="145" as="geometry" />
         </mxCell>
-        <mxCell id="hasTracks" value="Tracks found?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="440" y="445" width="200" height="105" as="geometry"/>
+        <mxCell id="env" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#453257;strokeColor=#9B7BB5;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Load .env configuration" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="245" as="geometry" />
         </mxCell>
-        <mxCell id="none" value="Print no-scrobbles message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="755" y="462" width="245" height="70" as="geometry"/>
+        <mxCell id="fetch" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Fetch recent tracks from Last.fm API" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="345" as="geometry" />
         </mxCell>
-        <mxCell id="summary" value="Build weekly summary: top artists, tracks, albums, total plays, busiest day, peak hour" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="595" width="320" height="90" as="geometry"/>
+        <mxCell id="decision" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#5C4300;strokeColor=#D6A300;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Tracks found?" vertex="1">
+          <mxGeometry height="130" width="260" x="290" y="460" as="geometry" />
         </mxCell>
-        <mxCell id="spotifyLookup" value="Authenticate with Spotify and find matching images and links" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="725" width="320" height="80" as="geometry"/>
+        <mxCell id="summary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Build weekly summary" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="650" as="geometry" />
         </mxCell>
-        <mxCell id="playlist" value="Create or update private Spotify playlist with top songs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="845" width="320" height="80" as="geometry"/>
+        <mxCell id="spotify" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Add Spotify images and links" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="coverDecision" value="Cover image exists?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="450" y="965" width="180" height="100" as="geometry"/>
+        <mxCell id="playlist" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Create or update Spotify playlist" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="850" as="geometry" />
         </mxCell>
-        <mxCell id="cover" value="Upload playlist cover image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="755" y="980" width="245" height="70" as="geometry"/>
+        <mxCell id="emailbuild" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#5C4300;strokeColor=#D6A300;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Build Spotify-style HTML email" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="950" as="geometry" />
         </mxCell>
-        <mxCell id="email" value="Build Spotify-style HTML email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="1105" width="320" height="70" as="geometry"/>
+        <mxCell id="send" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Send recap through Gmail SMTP" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="1050" as="geometry" />
         </mxCell>
-        <mxCell id="send" value="Send recap email through Gmail SMTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="380" y="1210" width="320" height="70" as="geometry"/>
+        <mxCell id="success" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Print success message" vertex="1">
+          <mxGeometry height="60" width="320" x="260" y="1150" as="geometry" />
         </mxCell>
-        <mxCell id="error" value="Print clear error message for API, runtime, or SMTP failure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4cccc;strokeColor=#cc0000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="755" y="1135" width="245" height="85" as="geometry"/>
+        <mxCell id="noscrobble" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Print no-scrobbles message" vertex="1">
+          <mxGeometry height="60" width="250" x="690" y="485" as="geometry" />
         </mxCell>
-        <mxCell id="end" value="End script" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f4cccc;strokeColor=#cc0000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="425" y="1315" width="230" height="60" as="geometry"/>
+        <mxCell id="errorNote" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#E06666;fontStyle=1;fontSize=13;align=left;rotation=90;" value="Any API, playlist, or SMTP error" vertex="1">
+          <mxGeometry height="22" width="250" x="559" y="741" as="geometry" />
         </mxCell>
-        <mxCell id="a1" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="start" target="env"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a2" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="env" target="lastfm"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a3" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="lastfm" target="filter"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a4" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="filter" target="hasTracks"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a5" value="Yes" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="hasTracks" target="summary"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a6" value="No" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="hasTracks" target="none"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a7" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="summary" target="spotifyLookup"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a8" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="spotifyLookup" target="playlist"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a9" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="playlist" target="coverDecision"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a10" value="Yes" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="coverDecision" target="cover"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a11" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="cover" target="email"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a12" value="No" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="coverDecision" target="email"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a13" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="email" target="send"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a14" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="send" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a15" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="none" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a16" value="API error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="lastfm" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a17" value="Spotify error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="spotifyLookup" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a18" value="Playlist error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="playlist" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a19" value="SMTP error" style="endArrow=block;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="send" target="error"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="a20" value="" style="endArrow=block;html=1;rounded=0;" edge="1" parent="1" source="error" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="endMainOuter" parent="1" style="ellipse;html=1;fillColor=none;strokeColor=#F2F2F2;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="28" width="28" x="406" y="1268" as="geometry" />
+        </mxCell>
+        <mxCell id="endMainInner" parent="1" style="ellipse;html=1;fillColor=#F2F2F2;strokeColor=#F2F2F2;" value="" vertex="1">
+          <mxGeometry height="12" width="12" x="414" y="1276" as="geometry" />
+        </mxCell>
+        <mxCell id="endRightOuter" parent="1" style="ellipse;html=1;fillColor=none;strokeColor=#F2F2F2;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="28" width="28" x="801" y="1268" as="geometry" />
+        </mxCell>
+        <mxCell id="endRightInner" parent="1" style="ellipse;html=1;fillColor=#F2F2F2;strokeColor=#F2F2F2;" value="" vertex="1">
+          <mxGeometry height="12" width="12" x="809" y="1276" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="run" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="124" />
+              <mxPoint x="420" y="124" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="run" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="env" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="env" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="fetch" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="fetch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="decision" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;labelBackgroundColor=none;endArrow=block;endFill=1;" target="summary" value="yes">
+          <mxGeometry relative="1" y="16" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="summary" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="spotify" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="spotify" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="playlist" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="playlist" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="emailbuild" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="emailbuild" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="send" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="send" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="success" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="endMainOuter" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="1252" />
+              <mxPoint x="420" y="1252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;labelBackgroundColor=none;endArrow=block;endFill=1;" target="noscrobble" value="no">
+          <mxGeometry relative="1" x="-0.3467" y="5" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="630" y="525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="noscrobble" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;labelBackgroundColor=none;endArrow=block;endFill=1;" target="endRightOuter" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="815" y="585" />
+              <mxPoint x="815" y="1268" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="fetch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=none;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="375" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="spotify" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=none;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="playlist" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=none;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="880" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="send" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=none;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=none;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="375" as="sourcePoint" />
+            <mxPoint x="660" y="1171" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=block;endFill=1;" target="failure" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="1171" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="1" source="failure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#E06666;strokeWidth=1.5;labelBackgroundColor=none;endArrow=block;endFill=1;" target="endRightOuter" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="failure" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#6A3131;strokeColor=#E06666;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=13;" value="Log failure and print readable&lt;br&gt;error message" vertex="1">
+          <mxGeometry height="72" width="250" x="690" y="1135" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

@@ -1,67 +1,164 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="Component and Deployment Diagram">
-    <mxGraphModel dx="1400" dy="950" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="950" math="0" shadow="0">
+<mxfile host="app.diagrams.net" pages="2">
+  <diagram name="Spotify Recap - Component &amp; Deployment" id="0">
+    <mxGraphModel dx="1935" dy="1158" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="950" background="#111111" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-        <mxCell id="scheduler" value="&lt;&lt;Scheduler&gt;&gt;&lt;br&gt;Windows Task Scheduler&lt;br&gt;optional weekly trigger" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#e69138;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="45" y="80" width="220" height="95" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#F2F2F2;fontStyle=1;fontSize=26;align=left;verticalAlign=middle;" value="UML Component and Deployment Diagram" vertex="1">
+          <mxGeometry height="34" width="520" x="55" y="32" as="geometry" />
         </mxCell>
-        <mxCell id="pc" value="&lt;&lt;Device&gt;&gt;&lt;br&gt;User Windows PC" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="320" y="45" width="700" height="650" as="geometry"/>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#A8A8A8;fontSize=15;align=left;verticalAlign=middle;" value="Weekly Spotify Recap" vertex="1">
+          <mxGeometry height="24" width="260" x="55" y="66" as="geometry" />
         </mxCell>
-        <mxCell id="python" value="&lt;&lt;Execution Environment&gt;&gt;&lt;br&gt;Python virtual environment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1f1f1f;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="365" y="105" width="610" height="395" as="geometry"/>
+        <mxCell id="user" parent="1" style="shape=umlActor;html=1;strokeColor=#F2F2F2;fillColor=none;fontColor=#F2F2F2;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=14;" value="User" vertex="1">
+          <mxGeometry height="110" width="44" x="20" y="385" as="geometry" />
         </mxCell>
-        <mxCell id="main" value="&lt;&lt;Component&gt;&gt;&lt;br&gt;main.py&lt;br&gt;main flow" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="600" y="245" width="150" height="80" as="geometry"/>
+        <mxCell id="scheduler" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Windows Task Scheduler / PowerShell&lt;br&gt;starts script" vertex="1">
+          <mxGeometry height="92" width="265" x="163" y="394" as="geometry" />
         </mxCell>
-        <mxCell id="lastfm" value="&lt;&lt;Component&gt;&gt;&lt;br&gt;lastfm.py&lt;br&gt;collect data" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="405" y="165" width="150" height="80" as="geometry"/>
+        <mxCell id="pc" parent="1" style="swimlane;html=1;startSize=34;rounded=1;arcSize=10;fillColor=none;strokeColor=#8A8A8A;strokeWidth=1.5;fontColor=#EAEAEA;fontStyle=1;fontSize=14;" value="Local Windows PC" vertex="1">
+          <mxGeometry height="805" width="825" x="455" y="78" as="geometry" />
         </mxCell>
-        <mxCell id="summary" value="&lt;&lt;Component&gt;&gt;&lt;br&gt;summary.py&lt;br&gt;calculate stats" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="600" y="145" width="150" height="80" as="geometry"/>
+        <mxCell id="main" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#5C4300;strokeColor=#D6A300;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="main.py&lt;br&gt;coordinates workflow" vertex="1">
+          <mxGeometry height="94" width="205" x="338" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="spotify" value="&lt;&lt;Components&gt;&gt;&lt;br&gt;spotify_auth.py&lt;br&gt;spotify_api.py&lt;br&gt;spotify_lookup.py&lt;br&gt;enrichment.py" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="795" y="145" width="150" height="125" as="geometry"/>
+        <mxCell id="logging" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#6A4300;strokeColor=#E0A53A;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="app_logging.py&lt;br&gt;writes logs" vertex="1">
+          <mxGeometry height="94" width="190" x="603" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="playlist" value="&lt;&lt;Component&gt;&gt;&lt;br&gt;playlist.py&lt;br&gt;update playlist" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="795" y="350" width="150" height="80" as="geometry"/>
+        <mxCell id="lastfmClient" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="lastfm_client.py&lt;br&gt;loads tracks" vertex="1">
+          <mxGeometry height="94" width="190" x="82" y="325" as="geometry" />
         </mxCell>
-        <mxCell id="email" value="&lt;&lt;Components&gt;&gt;&lt;br&gt;email_html.py&lt;br&gt;mailer.py&lt;br&gt;build and send" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="600" y="360" width="150" height="95" as="geometry"/>
+        <mxCell id="summary" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="recap_summary.py&lt;br&gt;calculates stats" vertex="1">
+          <mxGeometry height="94" width="205" x="338" y="325" as="geometry" />
         </mxCell>
-        <mxCell id="config" value="&lt;&lt;Component&gt;&gt;&lt;br&gt;config.py&lt;br&gt;read settings" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#333333;strokeColor=#ffffff;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="405" y="360" width="150" height="80" as="geometry"/>
+        <mxCell id="spotifyModules" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Spotify modules&lt;br&gt;links, images, playlist" vertex="1">
+          <mxGeometry height="94" width="190" x="603" y="325" as="geometry" />
         </mxCell>
-        <mxCell id="fs" value="&lt;&lt;Artifact&gt;&gt;&lt;br&gt;Local filesystem&lt;br&gt;.env&lt;br&gt;assets/playlist-cover.jpg&lt;br&gt;source files" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#3b2848;strokeColor=#b573d6;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="545" y="555" width="250" height="115" as="geometry"/>
+        <mxCell id="emailBuilder" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#5C4300;strokeColor=#D6A300;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="recap_email_builder.py&lt;br&gt;builds HTML email" vertex="1">
+          <mxGeometry height="94" width="205" x="338" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="lastfmApi" value="&lt;&lt;External API&gt;&gt;&lt;br&gt;Last.fm API" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#203550;strokeColor=#6fa8dc;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="65" y="275" width="185" height="85" as="geometry"/>
+        <mxCell id="emailSender" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="email_sender.py&lt;br&gt;sends recap email" vertex="1">
+          <mxGeometry height="94" width="190" x="603" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="spotifyAccounts" value="&lt;&lt;External API&gt;&gt;&lt;br&gt;Spotify Accounts API&lt;br&gt;access tokens" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#203550;strokeColor=#6fa8dc;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="130" width="220" height="95" as="geometry"/>
+        <mxCell id="assets" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#453257;strokeColor=#9B7BB5;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="assets/&lt;br&gt;playlist cover image" vertex="1">
+          <mxGeometry height="94" width="190" x="603" y="708" as="geometry" />
         </mxCell>
-        <mxCell id="spotifyApi" value="&lt;&lt;External API&gt;&gt;&lt;br&gt;Spotify Web API&lt;br&gt;search / playlist / cover" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#203550;strokeColor=#6fa8dc;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="300" width="220" height="100" as="geometry"/>
+        <mxCell id="e4" edge="1" parent="pc" source="main" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="logging" value="logs">
+          <mxGeometry relative="1" x="-0.0667" y="12" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="gmail" value="&lt;&lt;External Service&gt;&gt;&lt;br&gt;Gmail SMTP Server" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#203550;strokeColor=#6fa8dc;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="505" width="220" height="85" as="geometry"/>
+        <mxCell id="e5" edge="1" parent="pc" source="main" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="lastfmClient" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e1" value="starts script" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;" edge="1" parent="1" source="scheduler" target="pc"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e2" value="calls" style="endArrow=block;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="main" target="lastfm"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3" value="calls" style="endArrow=block;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="main" target="summary"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e4" value="calls" style="endArrow=block;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="main" target="spotify"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e5" value="calls" style="endArrow=block;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="main" target="playlist"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e6" value="calls" style="endArrow=block;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="main" target="email"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e7" value="loads settings" style="endArrow=block;dashed=1;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="config" target="fs"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e8" value="reads cover" style="endArrow=block;dashed=1;html=1;rounded=0;strokeColor=#ffffff;fontColor=#ffffff;" edge="1" parent="1" source="playlist" target="fs"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e9" value="recent tracks" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;" edge="1" parent="1" source="lastfm" target="lastfmApi"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e10" value="OAuth token" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;" edge="1" parent="1" source="spotify" target="spotifyAccounts"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e11" value="search metadata" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;" edge="1" parent="1" source="spotify" target="spotifyApi"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e12" value="playlist changes" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;" edge="1" parent="1" source="playlist" target="spotifyApi"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e13" value="email" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;" edge="1" parent="1" source="email" target="gmail"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" edge="1" parent="pc" source="lastfmClient" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="summary" value="tracks">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="pc" source="summary" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="spotifyModules" value="summary">
+          <mxGeometry relative="1" x="0.1" y="16" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="pc" source="summary" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="emailBuilder" value="summary">
+          <mxGeometry relative="1" x="-0.0355" y="31" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="pc" source="emailBuilder" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="emailSender" value="HTML">
+          <mxGeometry relative="1" x="-0.0333" y="13" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="pc" source="emailBuilder" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="assets" value="playlist link">
+          <mxGeometry relative="1" x="0.0485" y="15" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="515" y="686" />
+              <mxPoint x="667" y="686" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="pc" source="assets" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="emailSender" value="cover">
+          <mxGeometry relative="1" x="0.037" y="-20" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="config" parent="pc" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#453257;strokeColor=#9B7BB5;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="config.py&lt;br&gt;reads .env settings" vertex="1">
+          <mxGeometry height="94" width="190" x="82" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="pc" source="main" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="config" value="loads">
+          <mxGeometry relative="1" y="-7" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lastfmApi" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Last.fm API" vertex="1">
+          <mxGeometry height="88" width="210" x="1460" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="spotifyAccounts" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Spotify Accounts API" vertex="1">
+          <mxGeometry height="88" width="210" x="1460" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="spotifyWeb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1F472A;strokeColor=#6AA84F;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Spotify Web API" vertex="1">
+          <mxGeometry height="88" width="210" x="1460" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="gmailSmtp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1E3555;strokeColor=#6D9EEB;strokeWidth=1.5;fontColor=#F2F2F2;fontStyle=1;fontSize=14;" value="Gmail SMTP Server" vertex="1">
+          <mxGeometry height="88" width="210" x="1460" y="735" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="user" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="scheduler" value="starts">
+          <mxGeometry relative="1" x="-0.0505" y="7" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="scheduler" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="main" value="runs">
+          <mxGeometry relative="1" x="-0.0061" y="9" as="geometry">
+            <mxPoint x="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="301" y="327" />
+              <mxPoint x="896" y="327" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="lastfmClient" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="lastfmApi" value="recent tracks">
+          <mxGeometry relative="1" x="-0.0041" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="669" y="375" />
+              <mxPoint x="1355" y="375" />
+              <mxPoint x="1355" y="214" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="spotifyModules" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="spotifyAccounts" value="token">
+          <mxGeometry relative="1" x="0.0094" y="11" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1355" y="424" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="spotifyModules" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="spotifyWeb" value="search / playlist">
+          <mxGeometry relative="1" x="0.567" y="15" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1315" y="589" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="emailSender" style="labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F2F2F2;strokeWidth=1.4;fontColor=#F2F2F2;fontSize=12;endArrow=block;endFill=1;" target="gmailSmtp" value="SMTP">
+          <mxGeometry relative="1" x="0.5556" y="16" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1330" y="779" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="5_J7f5mnY4lyVST4qtxS" name="Seite-2">
+    <mxGraphModel dx="774" dy="463" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
       </root>
     </mxGraphModel>
   </diagram>
