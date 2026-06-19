@@ -68,6 +68,7 @@ The project documentation is split into separate files:
 | --- | --- |
 | [Setup Guide](docs/setup.md) | Detailed setup guide for Last.fm, Spotify, Gmail, and local execution. |
 | [Testing Protocol](docs/testing-protocol.md) | Test setup, tested requirements, test cases, and latest result. |
+| [Diagram Explanation](docs/diagrams.md) | Explanation of the UML activity, component, and deployment diagrams. |
 | [Project Plan](documents/M122E_ProjectPlan_MelihYasar.pdf) | Approved project plan and timeline. |
 | [Project Proposal](documents/M122E_ProjectProposal_Melih.pdf) | Approved project proposal and prioritized requirements. |
 | [Email Design Mockup](documents/spotify-email-design-mockup.png) | Visual mockup of the Spotify-style recap email. |
