@@ -3,6 +3,8 @@
 from .app_logging import (
     LOGGER,
     configure_logging,
+    log_run_finished,
+    log_run_started,
     log_email_sent,
     log_playlist_ready,
     log_summary_built,
@@ -20,7 +22,7 @@ def run_recap():
     from .recap_summary import build_summary
 
     configure_logging()
-    LOGGER.info("Weekly Spotify recap started.")
+    log_run_started()
 
     print("Loading Last.fm data...")
     tracks = get_all_tracks_last_7_days()
@@ -29,6 +31,7 @@ def run_recap():
     if not tracks:
         LOGGER.warning("No scrobbles found in the last 7 days.")
         print("No scrobbles found in the last 7 days.")
+        log_run_finished("NO_DATA")
         return
 
     print("Building summary...")
@@ -53,5 +56,5 @@ def run_recap():
     log_email_sent(RECIPIENT_EMAIL, playlist["url"])
     print(f"Sent to: {RECIPIENT_EMAIL}")
 
-    LOGGER.info("Weekly Spotify recap finished successfully.")
+    log_run_finished("SUCCESS")
     print("Done.")

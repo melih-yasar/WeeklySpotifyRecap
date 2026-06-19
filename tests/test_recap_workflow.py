@@ -62,21 +62,23 @@ class RecapWorkflowTests(unittest.TestCase):
             "track_count": 2,
         }
 
-        with patch("weekly_spotify_recap.lastfm_client.get_all_tracks_last_7_days", return_value=[{"track": "data"}]):
-            with patch("weekly_spotify_recap.recap_summary.build_summary", return_value=sample_recap_summary()):
-                with patch("weekly_spotify_recap.spotify_enrichment.enrich_summary_with_spotify", return_value=sample_enriched()):
-                    with patch("weekly_spotify_recap.spotify_playlist.create_or_update_weekly_playlist", return_value=playlist):
-                        with patch("weekly_spotify_recap.recap_email_builder.build_html_email", return_value="<html></html>"):
-                            with patch("weekly_spotify_recap.email_sender.send_email") as send:
-                                recap_workflow.run_recap()
+        with patch("weekly_spotify_recap.recap_workflow.configure_logging"):
+            with patch("weekly_spotify_recap.lastfm_client.get_all_tracks_last_7_days", return_value=[{"track": "data"}]):
+                with patch("weekly_spotify_recap.recap_summary.build_summary", return_value=sample_recap_summary()):
+                    with patch("weekly_spotify_recap.spotify_enrichment.enrich_summary_with_spotify", return_value=sample_enriched()):
+                        with patch("weekly_spotify_recap.spotify_playlist.create_or_update_weekly_playlist", return_value=playlist):
+                            with patch("weekly_spotify_recap.recap_email_builder.build_html_email", return_value="<html></html>"):
+                                with patch("weekly_spotify_recap.email_sender.send_email") as send:
+                                    recap_workflow.run_recap()
 
         send.assert_called_once_with("<html></html>")
 
     def test_run_recap_stops_when_no_tracks_found(self):
-        with patch("weekly_spotify_recap.lastfm_client.get_all_tracks_last_7_days", return_value=[]):
-            with patch("weekly_spotify_recap.email_sender.send_email") as send:
-                with patch.object(recap_workflow.LOGGER, "warning") as warning_log:
-                    recap_workflow.run_recap()
+        with patch("weekly_spotify_recap.recap_workflow.configure_logging"):
+            with patch("weekly_spotify_recap.lastfm_client.get_all_tracks_last_7_days", return_value=[]):
+                with patch("weekly_spotify_recap.email_sender.send_email") as send:
+                    with patch.object(recap_workflow.LOGGER, "warning") as warning_log:
+                        recap_workflow.run_recap()
 
         send.assert_not_called()
         warning_log.assert_called_with("No scrobbles found in the last 7 days.")

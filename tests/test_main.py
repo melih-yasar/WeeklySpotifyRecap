@@ -41,19 +41,21 @@ class MainTests(unittest.TestCase):
         run_recap.assert_called_once_with()
 
     def test_run_handles_network_error(self):
-        with patch("weekly_spotify_recap.main.main", side_effect=requests.exceptions.RequestException("offline")):
-            with patch("builtins.print") as print_call:
-                with patch.object(main.LOGGER, "error") as error_log:
-                    main.run()
+        with patch("weekly_spotify_recap.main.configure_logging"):
+            with patch("weekly_spotify_recap.main.main", side_effect=requests.exceptions.RequestException("offline")):
+                with patch("builtins.print") as print_call:
+                    with patch.object(main.LOGGER, "error") as error_log:
+                        main.run()
 
         self.assertIn("Network/API error:", print_call.call_args.args[0])
         error_log.assert_called_once()
 
     def test_run_handles_smtp_authentication_error(self):
-        with patch("weekly_spotify_recap.main.main", side_effect=smtplib.SMTPAuthenticationError(535, b"bad")):
-            with patch("builtins.print") as print_call:
-                with patch.object(main.LOGGER, "error") as error_log:
-                    main.run()
+        with patch("weekly_spotify_recap.main.configure_logging"):
+            with patch("weekly_spotify_recap.main.main", side_effect=smtplib.SMTPAuthenticationError(535, b"bad")):
+                with patch("builtins.print") as print_call:
+                    with patch.object(main.LOGGER, "error") as error_log:
+                        main.run()
 
         self.assertIn("SMTP login failed", print_call.call_args.args[0])
         error_log.assert_called_once()

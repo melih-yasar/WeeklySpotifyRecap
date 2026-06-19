@@ -1,5 +1,6 @@
 ﻿import tempfile
 import unittest
+from datetime import datetime
 from pathlib import Path
 
 import os
@@ -56,9 +57,12 @@ class AppLoggingTests(unittest.TestCase):
                         app_logging.LOGGER.removeHandler(handler)
                         handler.close()
 
-        self.assertIn("INFO info test", content)
-        self.assertIn("WARNING warning test", content)
-        self.assertIn("ERROR error test", content)
+        self.assertIn("INFO", content)
+        self.assertIn("info test", content)
+        self.assertIn("WARNING", content)
+        self.assertIn("warning test", content)
+        self.assertIn("ERROR", content)
+        self.assertIn("error test", content)
 
     def test_logging_helpers_write_expected_messages(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -74,6 +78,8 @@ class AppLoggingTests(unittest.TestCase):
                     "cover_uploaded": True,
                 })
                 app_logging.log_email_sent("recipient@example.com", "https://playlist")
+                app_logging.log_run_started()
+                app_logging.log_run_finished("SUCCESS")
 
                 for handler in app_logging.LOGGER.handlers:
                     handler.flush()
@@ -91,6 +97,30 @@ class AppLoggingTests(unittest.TestCase):
         self.assertIn("Built weekly summary", content)
         self.assertIn("Spotify playlist ready", content)
         self.assertIn("Weekly Spotify recap sent", content)
+        self.assertIn("Weekly Spotify Recap run started", content)
+        self.assertIn("status=SUCCESS", content)
+
+    def test_remove_old_log_entries_keeps_only_recent_entries(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log_file = Path(tmp) / "weekly_spotify_recap.log"
+            log_file.write_text(
+                "2026-06-10 09:00:00 | INFO    | old entry\n"
+                "old traceback line\n"
+                "2026-06-15 09:00:00 | INFO    | recent entry\n",
+                encoding="utf-8",
+            )
+
+            app_logging.remove_old_log_entries(
+                log_file,
+                retention_days=7,
+                now=datetime(2026, 6, 19, 9, 0, 0),
+            )
+
+            content = log_file.read_text(encoding="utf-8")
+
+        self.assertNotIn("old entry", content)
+        self.assertNotIn("old traceback line", content)
+        self.assertIn("recent entry", content)
 
 
 if __name__ == "__main__":

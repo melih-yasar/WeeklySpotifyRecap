@@ -15,6 +15,7 @@ if not __package__:
 from .app_logging import (
     LOGGER,
     configure_logging,
+    log_run_finished,
 )
 from .recap_workflow import run_recap
 
@@ -33,18 +34,22 @@ def run():
 
     except requests.exceptions.RequestException as e:
         LOGGER.error("Network/API error while running weekly recap.", exc_info=True)
+        log_run_finished("FAILED")
         print("Network/API error:", e)
 
     except RuntimeError as e:
         LOGGER.error("Runtime error while running weekly recap.", exc_info=True)
+        log_run_finished("FAILED")
         print("Runtime error:", e)
 
     except smtplib.SMTPAuthenticationError:
         LOGGER.error("SMTP login failed while sending weekly recap.", exc_info=True)
+        log_run_finished("FAILED")
         print("SMTP login failed. Check Gmail address and app password.")
 
     except Exception as e:
         LOGGER.exception("Unexpected error while running weekly recap.")
+        log_run_finished("FAILED")
         print("Unexpected error:", e)
 
 
